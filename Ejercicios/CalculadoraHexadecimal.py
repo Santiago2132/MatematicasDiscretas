@@ -16,12 +16,12 @@ def hex_sum(a, b):
     hex_sum = decimal_to_hex(decimal_sum)
     return hex_sum
 #Resta de hexadecimales
-#Tiene errores en casos concretos falta terminar
+
 def hex_rest(a, b):
     decimal_a = int(a, 16)
     decimal_b = int(b, 16)
-    decimal_rest = decimal_a - decimal_b
-    hex_rest = decimal_to_hex(decimal_rest)
+    decimal_sum = decimal_a - decimal_b
+    hex_rest = decimal_to_hex(decimal_sum)
     return hex_rest
 #Multiplicacion de hexadecimales
 def hex_multiply(a, b):
