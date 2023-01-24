@@ -15,10 +15,13 @@ def hex_sum(a, b):
     decimal_sum = decimal_a + decimal_b
     hex_sum = decimal_to_hex(decimal_sum)
     return hex_sum
-
-
-num1 = input("Ingresa el primer número hexadecimal: ")
-num2 = input("Ingresa el segundo número hexadecimal: ")
-
-result = hex_sum(num1, num2)
-print("La suma en hexadecimal es:", result)
+while True:
+    #Ingreso de variables
+    num1 = input("Ingresa el primer número hexadecimal: ")
+    num2 = input("Ingresa el segundo número hexadecimal: ")
+    #resultado 
+    result = hex_sum(num1, num2)
+    print (result)
+    option = int(input("¿Quieres volver a sumar hexadecimales?  \n 1) Si \n 2) no \n Ingresa el número de la opción: "))
+    if option == 2:
+        break
