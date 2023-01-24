@@ -66,7 +66,7 @@ while True:
       except ValueError:
          print("Elige solo numeros del 1 al 6")
 
-
+   #Opciones
    if opcion == 1:   #Sumar los dos numeros
       print(" ")
       print("RESULTADO: La suma de",num1,"+",num2,"es igual a",hex_sum(num1,num2))
