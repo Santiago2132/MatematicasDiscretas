@@ -1,5 +1,6 @@
 #Funciones
 #Aun no funciona
+#Sigue sin funcionar
 #Conversor de decimal a hexadecimal
 def decimal_to_hex(decimal):
     hex_digits = "0123456789ABCDEF"
