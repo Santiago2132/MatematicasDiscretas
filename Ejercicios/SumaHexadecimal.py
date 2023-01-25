@@ -1,6 +1,6 @@
 #Funciones
 #Conversor de decimal a hexadecimal
-def decimal_to_hex(decimal):
+def decimaltohex(decimal):
     hex_digits = "0123456789ABCDEF"
     result = ""
     while decimal > 0:
@@ -9,7 +9,7 @@ def decimal_to_hex(decimal):
         result = hex_digits[remainder] + result
     return result
 #Verificacion de números hexadecimales
-def is_hex_number(string):
+def ishexnumber(string):
     if not string:
         return False
     hex_digits = set("0123456789abcdefABCDEF")
@@ -19,11 +19,11 @@ def is_hex_number(string):
     return True
 
 #Suma de Hexadecimales
-def hex_sum(a, b):
+def hexsum(a, b):
     decimal_a = int(a, 16)
     decimal_b = int(b, 16)
     decimal_sum = decimal_a + decimal_b
-    hex_sum = decimal_to_hex(decimal_sum)
+    hex_sum = decimaltohex(decimal_sum)
     return hex_sum
 
 #Suma
@@ -33,21 +33,21 @@ while True:
     #Ingreso de datos
 
     num1 = input("\nIngresa el primer número hexadecimal: ")
-    if is_hex_number(num1)==False:        
+    if ishexnumber(num1)==False:        
         while True:
             print("\nInvalid")          
             num1 = input("\nIngresa el primer número hexadecimal: ")
-            if is_hex_number(num1)==True:
+            if ishexnumber(num1)==True:
                 break
     num2 = input("\nIngresa el segundo número hexadecimal: ")
-    if is_hex_number(num2)==False:        
+    if ishexnumber(num2)==False:        
         while True:
             print("\nInvalid")         
             num2 = input("\nIngresa el segundo número hexadecimal: ")
-            if is_hex_number(num2)==True:
+            if ishexnumber(num2)==True:
                 break                       
     #resultado 
-    result = hex_sum(num1, num2)
+    result = hexsum(num1, num2)
     print (result)
     option = int(input("¿Quieres volver a sumar hexadecimales?  \n 1) Si \n 2) no \n Ingresa el número de la opción: "))
     if option == 2:
