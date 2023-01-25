@@ -33,14 +33,16 @@ while True:
     #Ingreso de datos
 
     num1 = input("\nIngresa el primer número hexadecimal: ")
-    if is_hex_number(num1)==False:
-        while True:            
+    if is_hex_number(num1)==False:        
+        while True:
+            print("\nInvalid")          
             num1 = input("\nIngresa el primer número hexadecimal: ")
             if is_hex_number(num1)==True:
                 break
     num2 = input("\nIngresa el segundo número hexadecimal: ")
-    if is_hex_number(num2)==False:
-        while True:            
+    if is_hex_number(num2)==False:        
+        while True:
+            print("\nInvalid")         
             num2 = input("\nIngresa el segundo número hexadecimal: ")
             if is_hex_number(num2)==True:
                 break                       
