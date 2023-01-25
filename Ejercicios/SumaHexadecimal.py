@@ -25,6 +25,8 @@ def hex_sum(a, b):
     decimal_sum = decimal_a + decimal_b
     hex_sum = decimal_to_hex(decimal_sum)
     return hex_sum
+
+#Suma
 while True:
     #Impresión del bienvenido
     print("\nBienvenido a la suma Hexadecimal \n∵*.•´¸.•*´✶´ \n\n° ☆ ° ˛*˛☆_Π______˚☆\n*˚ ˛★˛•*/________/ ~ ⧹。˚ ˚\n˚ ˛•˛•˚  ｜ 田田 ｜門｜ ˚\n╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬")
@@ -47,4 +49,5 @@ while True:
     print (result)
     option = int(input("¿Quieres volver a sumar hexadecimales?  \n 1) Si \n 2) no \n Ingresa el número de la opción: "))
     if option == 2:
+        print("\n Adios  :D...")
         break
