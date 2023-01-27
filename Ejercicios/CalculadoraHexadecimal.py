@@ -36,8 +36,8 @@ def hex_sum(a, b):
 def hex_rest(a, b):
    decimal_a = int(a, 16)
    decimal_b = int(b, 16)
-   decimal_sum = decimal_a - decimal_b
-   hex_rest = decimal_to_hex(decimal_sum)
+   decimal_rest = decimal_a - decimal_b
+   hex_rest = decimal_to_hex(decimal_rest)
    return hex_rest
 
 #Multiplicacion de hexadecimales
@@ -47,8 +47,8 @@ def hex_multiply(a, b):
    decimal_a = int(a, 16)
    decimal_b = int(b, 16)
    decimal_multiply = decimal_a * decimal_b
-   hex_rest = decimal_to_hex(decimal_multiply)
-   return hex_rest
+   hex_multiply = decimal_to_hex(decimal_multiply)
+   return hex_multiply
 
 #Division de hexadecimales
 
@@ -56,8 +56,8 @@ def hex_division(a, b):
    decimal_a = int(a, 16)
    decimal_b = int(b, 16)
    decimal_division = decimal_a // decimal_b
-   hex_rest = decimal_to_hex(decimal_division)
-   return hex_rest
+   hex_division = decimal_to_hex(decimal_division)
+   return hex_division
 
 
 
@@ -98,7 +98,7 @@ while True:
          opcion = int(input("Elige una opción: ") )
          break
       except ValueError:
-         print("Elige solo numeros del 1 al 6")
+         print("¡Elige solo numeros del 1 al 6!")
 
    #Opciones
    if opcion == 1:   #Sumar los dos numeros
@@ -110,17 +110,14 @@ while True:
    elif opcion == 3:    #Multiplica los dos numeros
       print(" ")
       print("RESULTADO: El producto de",num1,"*",num2,"es igual a",hex_multiply(num1,num2))
-#No funciona la division en hexadecimal
-
    elif opcion == 4:    #Divide los dos numeros
       print("RESULTADO: El producto de",num1,"/",num2,"es igual a",hex_division(num1,num2))
 
    elif opcion == 5:       #Vuelve a preguntar los dos numeros      
       num1 = input("Introduce tu primer número hexadecimal: ")    
-      num2 = input("Introduce tu segundo número: ")
-                     
-
+      num2 = input("Introduce tu segundo número: ")   
    elif opcion == 6:    #Cierra la calculadora
       break
    else:
       print("Opción incorrecta")
+   
