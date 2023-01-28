@@ -1,14 +1,11 @@
 #Funciones 
-
+#Octal a decimal
 def octal_to_decimal(octal):
     decimal = 0
     octal = str(octal)
     for i in range(len(octal)):
         decimal += int(octal[i]) * (8 ** (len(octal) - i - 1))
     return decimal
-
-print(octal_to_decimal('12')) # Output: 10
-
 #de decimal a  octal
 def decimal_to_octal(decimal):
     octal = ""
@@ -17,8 +14,6 @@ def decimal_to_octal(decimal):
         decimal = decimal // 8
         octal = str(remainder) + octal
     return octal
-
-print(decimal_to_octal(10)) # Output: '12'
 #Operaciones
 #Suma
 def oct_sum(a, b):
@@ -27,6 +22,27 @@ def oct_sum(a, b):
     decimal_sum = decimal_a + decimal_b
     octal_sum = decimal_to_octal(decimal_sum)
     return octal_sum
+#Resta
+def oct_rest(a, b):
+    decimal_a = octal_to_decimal(a)
+    decimal_b = octal_to_decimal(b)
+    decimal_rest = decimal_a - decimal_b
+    octal_rest = decimal_to_octal(decimal_rest)
+    return octal_rest
+#Multriplicación
+def oct_mult(a, b):
+    decimal_a = octal_to_decimal(a)
+    decimal_b = octal_to_decimal(b)
+    decimal_mult = decimal_a + decimal_b
+    octal_mult = decimal_to_octal(decimal_mult)
+    return octal_mult
+#Division
+def oct_div(a, b):
+    decimal_a = octal_to_decimal(a)
+    decimal_b = octal_to_decimal(b)
+    decimal_div = decimal_a // decimal_b
+    octal_div = decimal_to_octal(decimal_div)
+    return octal_div
 
 while True:
     #Impresión del bienvenido
