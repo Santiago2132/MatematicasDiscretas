@@ -22,12 +22,24 @@ print(decimal_to_octal(10)) # Output: '12'
 #Operaciones
 #Suma
 def oct_sum(a, b):
-    decimal_a = int(a, 16)
-    decimal_b = int(b, 16)
+    decimal_a = octal_to_decimal(a)
+    decimal_b = octal_to_decimal(b)
     decimal_sum = decimal_a + decimal_b
-    oct_sum = octal_to_decimal(decimal_sum)
-    return oct_sum
+    octal_sum = decimal_to_octal(decimal_sum)
+    return octal_sum
 
-num1 = octal_to_decimal(23)
-num2 = octal_to_decimal(22)
-print("Prueba de suma: ",oct_sum(num1,num2))
+while True:
+    #Impresión del bienvenido
+    print("\nBienvenido a la calculadora Octal \n∵*.•´¸.•*´✶´ \n\n° ☆ ° ˛*˛☆_Π______˚☆\n*˚ ˛★˛•*/________/ ~ ⧹。˚ ˚\n˚ ˛•˛•˚  ｜ 田田 ｜門｜ ˚\n╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬")
+    #Ingreso de datos
+
+    num1 = input("\nIngresa el primer número Octal: ")
+    
+    num2 = input("\nIngresa el segundo número Octal: ")
+    #resultado 
+    result = oct_sum(num1, num2)
+    print (result)
+    option = int(input("¿Quieres volver a sumar hexadecimales?  \n 1) Si \n 2) no \n Ingresa el número de la opción: "))
+    if option == 2:
+        print("\n Adios  :D...")
+        break
