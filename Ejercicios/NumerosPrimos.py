@@ -6,7 +6,9 @@ def prime(n):
         if n % i == 0:
             return False
     return True
-
-print(prime(2)) # True
-print(prime(3)) # True
-print(prime(4)) # False
+print("\nPrueba\n ")
+i=0
+while i<101:    
+    x = prime(i)
+    print("El número (",i,") es primo:",x)
+    i = i + 1
