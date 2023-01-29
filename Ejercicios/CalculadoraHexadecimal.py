@@ -84,7 +84,6 @@ while True:
    
    print("""
    Opciones:
-
    1) Sumar los dos números
    2) Restar los dos números
    3) Multiplicar los dos números
@@ -112,7 +111,6 @@ while True:
       print("RESULTADO: El producto de",num1,"*",num2,"es igual a",hex_multiply(num1,num2))
    elif opcion == 4:    #Divide los dos numeros
       print("RESULTADO: El producto de",num1,"/",num2,"es igual a",hex_division(num1,num2))
-
    elif opcion == 5:       #Vuelve a preguntar los dos numeros      
       num1 = input("Introduce tu primer número hexadecimal: ")    
       num2 = input("Introduce tu segundo número: ")   
