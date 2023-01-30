@@ -4,16 +4,16 @@ def on_button_click():
     entered_text = entradanum1.get()
     try:
         entered_number1 = int(entered_text)
-        print(entered_number1)
+        print("Número 1: ",entered_number1)
     except ValueError:
         print("Por favor ingresa un número válido.")
     entered_text = entradanum2.get()
     try:
         entered_number2 = int(entered_text)
-        print(entered_number2)
+        print("Número 2: ",entered_number2)
     except ValueError:
         print("Por favor ingresa un número válido.")
-    print(entered_number1+entered_number1)    
+    print("Suma da:",entered_number1+entered_number1)    
 "Creación de la ventana"
 ventana = tk.Tk()
 #Tamaño de la ventana
