@@ -4,41 +4,59 @@ def strike (tiro1,tiro2):
     if tiro1 ==10 or tiro2 ==10:
         return True
     return False
+def tiro(turno):
+    if turno >0:
+        return 0
+    if turno < 0:
+        return 1
 #Datos
-matrix = np.empty((100, 100))#Matriz
+
 tiro1 = [None] * 10 #Lista
 tiro2 = [None] * 11 #Lista
 resultados = [None] * 12
-#Puntaje
-for i in range(9):
-    print("Turno ",i+1)
-    for j in range(2):
-        if j == 0: #Ingreso del primer tiro
-            while True:
+#Ingreso de datos
+i=0
+turno = 0
+turn = 1
+contador = 1
+while i < 20:
+    
+    print("Turno ",contador)
+    if turno == 0:
+        while True:
                 try:
-                    matrix[i][j] = int(input("Ingrese el primer tiro: ".format(i, j)))                    
-                    if matrix[i][j]<= 10 or matrix[i][j] >= 0:
+                    tiro1[i] = int(input("Ingrese el primer tiro: "))                    
+                    if tiro1[i] <= 10 or tiro1[i]  >= 0:
                         break
                     break
                 except ValueError:
                     print("\n¡¡¡Ingrese un número!!!\n")
-            print()
-        if j == 1: #Ingreso del segundo tiro
-            while True:
+    if turno == 1:
+        while True:
+                tope = 10-tiro1[i-1]
                 try:
-                    matrix[i][j]= int(input("Ingrese el segundo tiro: ".format(i, j)))
-                    tope = 10 - matrix[i][0]                    
-                    if matrix[i][j] <= tope and matrix[i][j] >= 0:
-                        break                    
+                    tiro2[i-1] = int(input("Ingrese el primer tiro: "))                    
+                    if tiro2[i-1] <= tope and tiro2[i-1] >= 0:
+                        break
+                    break
                 except ValueError:
                     print("\n¡¡¡Ingrese un número!!!\n")
-            print()
+    if turn == 1:
+        turn ==2
+    if turn == 2:
+        turn ==1
+        contador = contador + 1
+    if turno >0:
+        turno = 0
+    if turno < 0:
+        turno = 1
+print(tiro1)
+print(tiro2)
+
+
 #lanzamiento 10
-print (matrix)
-#puntos
+
+
+#Puntaje
 resultado = np.empty((10, 2))
 
-for i in range(10):  
-    if i == 0:
-        resultado[i][0] = matrix[i][0] + matrix[i]
-    #Strike
