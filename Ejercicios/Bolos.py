@@ -28,9 +28,4 @@ for i in range(18):
             if x >=0 or x <=10:
                 tiros[i] = x
                 break
-
-
-
-
-
 #Primer tiro
