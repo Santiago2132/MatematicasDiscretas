@@ -1,45 +1,42 @@
-import java.lang.Math;
+import java.util.Scanner;
 
 public class Discos
 {
-    public static boolean positive(double a) // Verifica que el resultado de dentro de la Raiz no sea negativo
-    {
-        if (a > 0)
-        {
-            return true;
-        }
-        if (a < 0)
-        {
-            return false;
-        }
-        return false;
-    }
-    public static double disk(double a, double b) //Hace el calculo de los discos
-    {
-        double x = b * b;
-        double z = a * x;
-        return z;
-    }
     public static void main(String[] args)
     {
-        double vt = 12; //volumen total
-        double v0 = 1; //volumen perdido
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Ingreso de la masa total: ");
+        double vt = sc.nextDouble(); // almacenado de masa total
+        System.out.print("Ingreso de la masa perdida: ");
+        double v0 = sc.nextDouble();// almacenado de la masa perdida
         int i = 0;
-        while (true) 
+        if (Math.pow(2, 16) > v0 && Math.pow(2, 64) > vt)
         {
-            i++;
-            double y = i * i; // Volumen de la matriz
-            double a = (vt / y) - v0;
-            if (positive(a) == true)//Si lo de dentro de la matriz es positivo hace el calculo
+            while (true)
             {
-                System.out.println("Hace el calculo del diametro");
-                double diametro = 0.3 * Math.sqrt(vt / y - v0);//calcula el diametro 
-                System.out.println("Diametro: " + diametro);//Impresión del diametro
-                System.out.println("Discos: " + disk(diametro, i));//Impresipon y calculo de los discos
-            }
-            if (positive(a) == false)
-            {
-                break;
+                i++;
+                double y = i * i; // calculo de casillas i = 2, la matriz sera de 4 casillas por que y = 2 * 2 = 4
+                double a = (vt / y) - v0; // calculo previo para verfificar que dentro de la raiz no sea negativo
+                if (a >= 0)
+                {
+                    System.out.println("Hace el calculo del diametro");
+                    double diametro = 0.3 * Math.sqrt(vt / y - v0);
+                    System.out.println("Filas: " + i);
+                    System.out.println("Diametro: " + diametro);
+                    double discos = diametro * y;
+                    if (discos > Math.pow(10, 3))
+                    {
+                        discos = discos % Math.pow(10, 3);
+                    }
+                    if (discos < Math.pow(10, 3)) 
+                    {
+                        System.out.println("Discos: " + discos);
+                    }
+                }
+                else 
+                {
+                    break;
+                }
             }
         }
     }

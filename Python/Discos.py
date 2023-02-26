@@ -1,19 +1,22 @@
 import math
-def disk(a,b):
-    x = b * b
-    z = a * x
-    return z
-vt = 16
-v0 = 2
+vt = 12
+v0 = 1
+vt, v0 = map(float, input().split()) #Pide los datos
 i = 0
-while True:
-    i += 1
-    y = i*i
-    a = (vt/y)- v0
-    if a >=0 :
-        print("Hace el calculo del diamextro")
-        diametro = 0.3 * math.sqrt (vt/y - v0)
-        print ("Diametro: ",diametro) 
-        print ("Discos: ",disk(diametro,i))
-    else:        
-        break
+if math.pow(2,16)>v0 and math.pow(2,64) > vt: 
+    while True:
+        i += 1    
+        y = i*i
+        a = (vt/y)- v0
+        if a >=0 :
+            print("Hace el calculo del diamextro")        
+            diametro = 0.3 * math.sqrt (vt/y - v0)
+            print("Filas: ",i)
+            print ("Diametro: ",diametro) 
+            discos = diametro * y
+            if discos > (math.pow(10,3)): 
+                discos = discos % pow(10,3)
+            if discos < (math.pow(10,3)):
+                print ("Discos: ", discos)
+        else:        
+            break
