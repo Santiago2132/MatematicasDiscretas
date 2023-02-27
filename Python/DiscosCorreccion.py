@@ -11,8 +11,10 @@ while True:
             break
     except ValueError:
         print("¡Ingrese algo valido!")
+
 i = 0
 valorAnterior = 0
+
 if math.pow(2, 16) > v0 and math.pow(2, 64) > vt: 
     while True:
         i += 1    
