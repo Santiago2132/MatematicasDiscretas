@@ -20,13 +20,9 @@ if math.pow(2, 16) > v0 and math.pow(2, 64) > vt:
         i += 1    
         y = i*i
         a = (vt/y) - v0
-        if a >= 0:
-            print("Hace el calculo del diametro")        
-            diametro = 0.3 * math.sqrt(vt/y - v0)
-            print("Filas: ", i)
-            print("Diametro: ", diametro) 
-            discos = diametro * y
-            print("Discos: ", discos)         
+        if a >= 0:     
+            diametro = 0.3 * math.sqrt(vt/y - v0)            
+            discos = diametro * y  
             if discos > math.pow(10, 3): 
                 discos = discos % math.pow(10, 3)
             if discos < valorAnterior:
