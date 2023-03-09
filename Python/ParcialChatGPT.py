@@ -1,5 +1,5 @@
 #Función para saber si tiene 3 números iguales
-def tredigitosiguales(num):
+def tredigitosiguales(num): #Ya funciona
     digitos = []
     # Convertir el número en una cadena y recorrer cada dígito
     for digito in str(num):
@@ -9,8 +9,8 @@ def tredigitosiguales(num):
     for i in range(len(digitos)):
         cont = 0
         for j in range(len(digitos)):
-            if digitos[i] == digitos[j]:
-                cont += 1
+            if digitos[i] == digitos[j]: #Se recorre la misma lista con el fin de comparar si existen iguales
+                cont += 1#Con ello almacenando y si llega a 3, retornar verdadero
             if cont >= 3:
                 return True
     return False
@@ -29,7 +29,7 @@ def multiplicador_constante(semilla, cantidad):
         lista_semilla.append(numero)
     return lista_numeros, lista_semilla
 #Programa principal
-while True:
+while True:#Falta culminar la salida de los números aleatorios.
     try:
         seed = int(input("Ingrese una semilla de 5 a 7 dígitos: "))
         if len(str(seed)) < 5 or len(str(seed)) > 7:
