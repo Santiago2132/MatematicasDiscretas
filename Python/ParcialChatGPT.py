@@ -1,19 +1,19 @@
 #Función para saber si tiene 3 números iguales
-def validar_semilla(semilla):
-    str_semilla = str(semilla)
-    count = 1
-    last_digit = str_semilla[0]
-    for i in range(1, len(str_semilla)):
-        if str_semilla[i] == last_digit:
-            count += 1
-            if count > 2:
-                return False
-        else:
-            count = 1
-            if str_semilla[i] == str(int(last_digit) + 1) or str_semilla[i] == str(int(last_digit) - 1):
-                return False
-        last_digit = str_semilla[i]
-    return True
+def tredigitosiguales(num):
+    digitos = []
+    # Convertir el número en una cadena y recorrer cada dígito
+    for digito in str(num):
+        # Convertir el dígito en un entero y agregarlo a la lista
+        digitos.append(int(digito))
+    # Creación de la función
+    for i in range(len(digitos)):
+        cont = 0
+        for j in range(len(digitos)):
+            if digitos[i] == digitos[j]:
+                cont += 1
+            if cont >= 3:
+                return True
+    return False
 #Funcion del producto medio 
 def multiplicador_constante(semilla, cantidad):
     lista_semilla = [] #Lista para las semillas
@@ -41,7 +41,7 @@ while True:
         elif any(str(seed)[i:i+3] in '0123456789' for i in range(len(str(seed))-2)):
             print("Error: la semilla no puede tener números consecutivos")
             continue
-        elif validar_semilla(seed):
+        elif tredigitosiguales(seed):
             print("Error: la semilla no puede tener tres dígitos iguales")
             continue
         else:
