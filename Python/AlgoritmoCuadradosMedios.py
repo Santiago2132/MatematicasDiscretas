@@ -11,6 +11,7 @@ while True:
         snumero2 = str(numero2) #Transforma el número generado en una string
         tam2 = len(snumero2) #Calcula el tamaño del número generado
         primerc = int((tam2 - tam1) / 2)#Determina a partir de cual número se extrae la cadena de tam1 del calculo generado
+        print(primerc)
         snumero3 = snumero2[primerc:primerc+tam1]#Se arma la cadena a partir del primer digito
         x = "0."
         print ("{}.  {}{}".format(i+1,x,snumero3))#Imprime de manera seccionada entre el número de i y el número generado
