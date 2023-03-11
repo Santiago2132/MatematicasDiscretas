@@ -68,10 +68,9 @@ while True:#Falta culminar la salida de los números aleatorios.
             print("Error: la semilla no puede tener tres dígitos iguales")
             continue
         else:
-            numeros_aleatorios, semillas = producto_medio(seed, 36)
-            for i in range(36):
-                print(numeros_aleatorios[i])
-                print(semillas[i])  
+            numeros_aleatorios, semillas = producto_medio(seed, 36)            
+            print(numeros_aleatorios)  
+            print(semillas)
     except ValueError:
         print("Error: el valor ingresado no es un número")
         continue    
