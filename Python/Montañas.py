@@ -8,8 +8,7 @@ def triangulo(x1,y1,x2,y2):
     if(y1>y2):
          x1
 
-    return tiempo
-#Atributos
+    return tiempo#Atributos
 
 cantCord = int(input("Cantidad de coordenadas:  "))#Ingreso de coordenadas
 lista1 = []
