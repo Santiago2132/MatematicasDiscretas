@@ -22,32 +22,33 @@ for i in range(cantCord):#Ingreso de puntos
     lista1.append(x)
     lista2.append(y)
 
-
-
 i=0
 tiempo = 0
 penultimo = len(lista1)-1
 while True:
-    if i != penultimo:            
-        if lista2[i] == lista2[i+2]:
-            d1 = formulaDistancia(lista1[i],lista2[i],lista1[i+1],lista2[i+1])
-            d2 = formulaDistancia(lista1[i],lista2[i],lista1[i+2],lista2[i+2])
-            t1 = tiempo(d1,vw)
-            t2 = tiempo(d2,vc)
-            if (t2 > t1):
-                tiempo = tiempo + t1
-                i+=1
-            else:
-                tiempo = tiempo + t2
-                i+=2
+    if i != penultimo:   
+        if lista2[i+1]> lista2[i]:
+            if lista2[i] == lista2[i+2]:
+                d1 = formulaDistancia(lista1[i],lista2[i],lista1[i+1],lista2[i+1])
+                d2 = formulaDistancia(lista1[i],lista2[i],lista1[i+2],lista2[i+2])
+                t1 = tiempo(d1,vw)
+                t2 = tiempo(d2,vc)
+                if (t2 > t1):
+                    tiempo = tiempo + t1
+                    i+=1
+                else:
+                    tiempo = tiempo + t2
+                    i+=2
         else:
             d = formulaDistancia(lista1[i],lista2[i],lista1[i+1],lista2[i+1])
-            caltiemp = d / vw               
+            caltiemp = d / vw
+            tiempo = tiempo + caltiemp               
             i+=1
     else:
         d = formulaDistancia(lista1[i],lista2[i],lista1[i+1],lista2[i+1])
         caltiemp = d / vw
         tiempo = tiempo + caltiemp
         break
+    
 
 print(tiempo)
