@@ -1,5 +1,5 @@
 #Programa algebra lineal
-import numpy as np
+import  numpy as np
 
 ALPHABET = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
 
