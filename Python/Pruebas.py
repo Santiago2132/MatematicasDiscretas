@@ -10,7 +10,7 @@ def decrypt(ciphertext, key):
     key_inv = (det_inv * np.round(det * np.linalg.inv(key)).astype(int) % len(ALPHABET)).astype(int)
     
     plaintext = ""
-    
+    print("Hola")
     # Create matrix from ciphertext
     ciphertext_matrix = []
     row = []
