@@ -2,8 +2,29 @@ import numpy as np
 while True:
     from math import gcd
 
-    ALPHABET = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
+    ALPHABET = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ" #En efecto el alfabeto
     #Funciones de entrada de datos
+
+    def entdatos(n):                    
+        key_input = input("Introduce la matriz clave (separada por comas y espacios): ")
+        key_matrix = [[int(num) for num in row.split()] for row in key_input.split(",")]           
+            
+        if(n == 1):
+            plaintext_input = input("Introduce el mensaje a cifrar: ")
+            plaintext_input = plaintext_input.replace(" ","")
+            try:
+                print(encrypt(plaintext_input.upper(), key_matrix))
+            except ValueError as e:
+                print(e)
+        
+        if(n == 2):
+            ciphertext_input = input("Introduce el mensaje cifrado: ")
+            ciphertext_input=  ciphertext_input.replace(" ","")        
+            print(decrypt(ciphertext_input.upper(), key_matrix))
+            '''try:
+                print(encrypt(plaintext_input.upper(), key_matrix))
+            except ValueError as e:
+                print(e)'''
     #Funciones de cifrado y descigrado
     def encrypt(plaintext, key):
         n = len(key)        
@@ -34,16 +55,7 @@ while True:
         # Separate ciphertext into groups of 4 characters
         separated_ciphertext = ' '.join([ciphertext[i:i+4] for i in range(0, len(ciphertext), 4)])        
         return separated_ciphertext
-    
-    key_input = input("Introduce la matriz clave (separada por comas y espacios): ")
-    key_matrix = [[int(num) for num in row.split()] for row in key_input.split(",")]
-    plaintext_input = input("Introduce el mensaje a cifrar: ")
-    plaintext_input = plaintext_input.replace(" ","")
-
-    try:
-        print(encrypt(plaintext_input.upper(), key_matrix))
-    except ValueError as e:
-        print(e)
+        
     #Desencriptación
     ALPHABET = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
 
@@ -85,10 +97,21 @@ while True:
             subTextoCifrado = np.dot(clave, subTexto) % 26
             textoCifradoNumeros.extend(subTextoCifrado)
         textoCifrado = ''.join([chr(num + 65) for num in textoCifradoNumeros])
-        return textoCifrado
+        return textoCifrado    
+    print("\nBienvenido a cifrado y descrifado \n\n░░▄▀▀▀▄░▄▄░░░░░░╠▓░░░░\n░░░▄▀▀▄█▄░▀▄░░░▓╬▓▓▓░░\n░░▀░░░░█░▀▄░░░▓▓╬▓▓▓▓░\n░░░░░░▐▌░░░░▀▀███████▀\n▒▒▄██████▄▒▒▒▒▒▒▒▒▒▒▒▒ \n \n 1). Cifrar un texto \n 2). Descrifrar un texto \n 3). Apagar el programa")
     
-    key_input = input("Introduce la matriz clave (separada por comas y espacios): ")
-    key_matrix = [[int(num) for num in row.split()] for row in key_input.split(",")]
-    ciphertext_input = input("Introduce el mensaje cifrado: ")
-    ciphertext_input=  ciphertext_input.replace(" ","")
-    print(decrypt(ciphertext_input.upper(), key_matrix))
+    while True: #Elecciíon de opciones
+        try:
+            option = int(input("\nIngrese un número de una opción: "))
+            break  # Salir del bucle si la entrada es válida
+        except ValueError:
+            print("Entrada inválida. Debe ingresar un número entero.")
+
+    if(option == 1 or option == 2):
+        entdatos(option)
+    if  option == 3:
+        print("\n ╔═════════════╗\n ║ Hasta luego ║\n ╚═════════════╝ \n")
+        break
+
+    
+    
