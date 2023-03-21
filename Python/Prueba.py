@@ -1,22 +1,22 @@
 import numpy as np
-while True:
+print("\nBienvenido a cifrado y descrifado \n\n░░▄▀▀▀▄░▄▄░░░░░░╠▓░░░░\n░░░▄▀▀▄█▄░▀▄░░░▓╬▓▓▓░░\n░░▀░░░░█░▀▄░░░▓▓╬▓▓▓▓░\n░░░░░░▐▌░░░░▀▀███████▀\n▒▒▄██████▄▒▒▒▒▒▒▒▒▒▒▒▒ \n ")
+while True:#Bucle principal del programa
     from math import gcd
-
-    ALPHABET = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ" #En efecto el alfabeto
+    ALPHABET = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ" #En efecto el alfabetoe
     #Funciones de entrada de datos
-
-    def entdatos(n):                    
-        key_input = input("Introduce la matriz clave (separada por comas y espacios): ")
-        key_matrix = [[int(num) for num in row.split()] for row in key_input.split(",")]           
-            
+    def entdatos(n):
+        key_input = input("\nLa matriz clave debe ser ingresada de la siguiente forma \n╔══════════════════╗\n║\"1 2, 3 4, 5 6,..\"║\n╚══════════════════╝\nIntroduce la matriz clave (separada por comas y espacios): ")
+        try:
+            key_matrix = [[int(num) for num in row.split()] for row in key_input.split(",")]           
+        except ValueError:
+            print("No es valido")
         if(n == 1):
             plaintext_input = input("Introduce el mensaje a cifrar: ")
             plaintext_input = plaintext_input.replace(" ","")
             try:
                 print(encrypt(plaintext_input.upper(), key_matrix))
             except ValueError as e:
-                print(e)
-        
+                print(e)        
         if(n == 2):
             ciphertext_input = input("Introduce el mensaje cifrado: ")
             ciphertext_input=  ciphertext_input.replace(" ","")        
@@ -57,7 +57,6 @@ while True:
         return separated_ciphertext
         
     #Desencriptación
-    ALPHABET = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
 
     def decrypt(ciphertext, key):
         n = len(key)
@@ -98,7 +97,7 @@ while True:
             textoCifradoNumeros.extend(subTextoCifrado)
         textoCifrado = ''.join([chr(num + 65) for num in textoCifradoNumeros])
         return textoCifrado    
-    print("\nBienvenido a cifrado y descrifado \n\n░░▄▀▀▀▄░▄▄░░░░░░╠▓░░░░\n░░░▄▀▀▄█▄░▀▄░░░▓╬▓▓▓░░\n░░▀░░░░█░▀▄░░░▓▓╬▓▓▓▓░\n░░░░░░▐▌░░░░▀▀███████▀\n▒▒▄██████▄▒▒▒▒▒▒▒▒▒▒▒▒ \n \n 1). Cifrar un texto \n 2). Descrifrar un texto \n 3). Apagar el programa")
+    print("\n 1). Cifrar un texto \n 2). Descrifrar un texto \n 3). Apagar el programa")
     
     while True: #Elecciíon de opciones
         try:
@@ -111,7 +110,6 @@ while True:
         entdatos(option)
     if  option == 3:
         print("\n ╔═════════════╗\n ║ Hasta luego ║\n ╚═════════════╝ \n")
+        print("\n⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣙⣆⠀⠈⢳⡄⠀⠀⠀⠀⠀\n⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣤⠶⠟⠛⠉⠁⠉⠛⠃⠀⠈⣿⠻⠷⠶⣦⣤⣀⠀\n⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣴⠟⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡄⠀⠀⠀⠀⠀⠈⠙⢿⣦⣄⣀⣤ ⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ \n⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠾⠋⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣇⠀⠀⠀⠀⠀⠀⠀ ⠈⢿⣿⡉⢹⣿⣿⣿⣷⣶⣶⣤⠀⠀⠀⠀⠀⠀⠀⠀ \n⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡾⠋⠀⣼⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⡄⠀ ⠀⠀⠀⠀⠀⠀⠘⣿⣧⠀⢩⣿⣿⣿⣿⣿⣿\n⠀⠀⠀⠀⠀⠀⠀⠀⣴⠏⠀⠀⢸⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠘⣧⠀⠀⠀⠀⠀⠀⢀⠀⠘⣿⣷⡀⢉⣿⣿⣿⣿⡏\n⠀⠀⠀⠀⠀⠀⣠⣾⠃⠀⠀⠀⣿⠃⠀⠀⠀⠀⠀⠀ ⠀⠁⠀⠀⣿⠀⠀⠀⢹⣇⠀⠀⠀⠀⠀⠘⣇⠀⠘⢿⣷⡉⠉⣿⣿⣿⠁\n⠀⠀⣀⣠⣴⣾⡿⠁⠀⠀⠀⠀⣿⠀⠀ ⠀⠀⠀⠀⠀⢰⡇⠀⠀⠸⣇⠀⠀⠀⢻⡄⠀⠀⠀⠀⠀⢻⡀⠀⠈⠻⣿⣮⡉⢹⡏⠀⠀⠀⠀ \n⢰⣿⣿⣿⣿⣿⠁⠀⢀⠀ ⠁⠀⢻⡆⠀⠀⠀⠀⠀⠀⢸⣧⠀⠀⠀⢻⡄⠀⠀⠀⢿⡀⠀⠀⠀⠀⠸⡇⠀⠀⠀⠘⡿⣿⣿⣷⡀⠀\n⠘⣿⣿⣿  ⠇⠀⠀⣾⠀⠀⠀⢸⣧⠀⠀⠀⠀⠀⠀⠈⣿⣦⠀⠀⠈⢿⣄⠀⠀⠈⢷⡀⠀⠀⠀⠀⣷⠀⠀⠀⠀⢷⡀⠙⢿⣷⡀⠀⠀⠀⠀\n⠀⢻⣿⣿⡏⠀⢠⡀⢻⠀⠀⠀⢸⣿⣦⡀⠀⠀⠀⠀⠀⢿⡉⢷⡄⠀⠘⢿⣦⡀⠀⠈⢷⡀⠀⠀⠀⢻⠀⠀⠀⠀⠈⣧⠀⠈⢻⣷⡀⠀\n⠀⠘⣿⡿⠀⠀⣸⠀⣸⡇⠀⠀⢸⡇⠈⢷⣄⡀⠀⠀⠀⢺⣇⠀⠙⢦⣄⠈⢷⡹⢦⡀⠈⣷⠀⠀⠀⢸⡇⠀⠀⠀⠀⠸⣇ ⠀⠀⠹⣷⡀⠀\n⠀⠀⣸⡇⠀⠀⡯⢠⣿⢿⡄⠀⢸⡇⠀⠀⠈⠛⠶⣦⣄⣀⣹⣿⡓⠳⠎⠛⠲⠿⢦⣽⣶⣼⣇⠀⠀⢸⡇⠀ ⠀⠀⠀⠀⢻⡄⠀⠀⢻⣧\n⠀⢠⣿⠀⠀⠀⡇⣼⠏⠀⠻⣆⢘⣧⣴⠖⠋⠀⠀⠀⠀⠉⠁⠉⠛⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿ ⡁⠀⢸⡇⠀⠀⠀⠀⠀⠘⣷⠀⠀⠈⣿⣇⠀\n⠀⣼⡟⠀⠀⠀⣿⡟⠀⠀⠀⠙⠳⠥⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀ ⣀⣠⣤⣤⣼⡇⠀⢸⡇⠀⠀⠀⠀⠀⠀⢹⡇⠀⠀⡟⢿⣆⠀⠀\n⢀⣿⡇⠀⠀⠀⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⢀⣠⡤⢶⣾⣿⣿⣏⡹⠿⣇⠀⢸⡇⠀⠀⠀⠀⠀⠀⠘⣧⠀⠀⣧⠸⣿⡀⠀\n⢸⣿⢣⠀⠀⠀⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀⠀⣶⣯⠵⠶⠛⠉⠁⠀⠀⠀⠀⢿⠀⢸⡇⠀⠀⠀⠀⠀⠀⠀⢻⠀⠀⣿⠀⣿⣧⠀⠀ \n⣸⡏⢹⠀⠀⠀⢿⡇⠀⠀⠀⣠⣤⣶⣾ ⣿⣻⣿⡿⠖⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⢀⠀⣀⠀⢸⡀⢸⠀⠀⠀⠀⠀⠀⠀⠀⢸⡆ ⠀⡿⢰⡏⣿⡀\n⣿⡇⢸⡄⠀⠀⢸⣿⢀⣴⣟⣡⡽⠟⠛⠋⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⡆⠸⣗⠻⠗⠻⠇⢸⡇⣸⠁⠀⠀⠀⠀ ⠀⠀⠀⢸⡇⠀⡇⢸⠇⢸⣧⠀ \n⣿⡅⠘⣇⠀⠀⠀⣿⡘⠛⠉⠁⠀⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠁⠀⠀⠀⠀⠀⠀⢈⡇⣿ ⠀⠀⠀⠀⠀⠀⠀⠀⢸⡇⢠⣃⡿⠀⠀⣿⠀ \n⣿⢷⡀⢹⡄⠀⠀⢹⡇⠀⠀⣸⡆⠶⠄⠛⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣠⡶⠃⠀⠀⠀ ⠀⠀⢸⣧⡇⠀⠀⠀⠀⠀⠀⠀⠀⢸⡇⠘⣼⠃⠀⠀⢻⡄\n⣿⠈⣧⠈⢷⠀⠀⠈⣿⠀⠀⠈⠀⠀⠀⠀⢀⠀⠀⢀⣀⣤⠴⠖⢚⣩⠽⠋ ⠀⠀⠀⠀⠀⠀⠀⠀⣿⠁⠀⠀⠀⠀⠀⠀⠀⠀⣸⠀⣰⠏⠀⠀⠀⢼⡇ \n⣿⠀⠘⣇⠘⣧⠀⠀⢸⡇⠀⠀⠀⠀⠀⠀⠉⠛⠛⠷⠖⠒⠒ ⠛⠉⠀⠀⠀⠀⠀⠀⠀⠀⣀⣴⢁⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⡿⢰⠟⠀⠀⠀⠀⣿⡄ \n⣿⡄⠀⠘⣦⠘⣇⠀⠈⣿⡄⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣴⠾⠋⢀⣽⡇⠀⠀⠀⠀⠀⠀⠀⠀⢨⡷⠋⠀⠀⠀⠀⠀⣿⠀ \n⢸⣧⠀⠀⠘⢧⡘⢧⡀⠘⠻⠶⢤ ⣤⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀⣀⣀⣠⣴⣾⠟⠋⢀⣠⠶⢻⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠃⠀⠀⠀⠀⠀⣰⡏⠀ \n⢿⡆⠀⠀⡈⢳⣄ ⠱⣄⠀⠀⠀⠀⠀⣽⠉⠉⢉⣉⠙⢿⣉⠉⠻⣿⡿⠋⢀⣠⠖⠋⠁⠀⣾⠁⠀⠀⠀⠀⠀⠀⠀⠀⢰⡟⠀⠀⠀⠀⠀⣠⡟⠀⠀\n⠈⢿ ⠀⠀⠀⠻⣾⣿⣛⣦⣄⠀⠈⠛⠲⠦⣄⣿⡇⠈⠙⠛⠶⠶⢶⣿⠀⠀⠀⢀⣴⣿⣿⣿⣯⣀⣀⣤⣤⣶⣿⣿⣿⣿ ⡛⠛⠋⠉⠉⠀⠀\n⠀⠀⠀⠀⠀⠘⣻⣷⣄⣙⡛⠶⠦⣤⣤⣄⣸⣷⡄⠀⠀⠀⢠⠏⣻⠀⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿ ⠛⣿⣿⣿⣿⣷⡀⠀⠀")
+        print("")
         break
-
-    
-    
