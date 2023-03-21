@@ -54,8 +54,7 @@ while True:#Bucle principal del programa
                 ciphertext += ALPHABET[encrypted_matrix[i][j]]        
         # Separate ciphertext into groups of 4 characters
         separated_ciphertext = ' '.join([ciphertext[i:i+4] for i in range(0, len(ciphertext), 4)])        
-        return separated_ciphertext
-        
+        return separated_ciphertext        
     #Desencriptación
 
     def decrypt(ciphertext, key):
