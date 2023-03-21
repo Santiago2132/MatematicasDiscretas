@@ -4,12 +4,12 @@ while True:#Bucle principal del programa
     from math import gcd
     ALPHABET = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ" #En efecto el alfabetoe
     #Funciones de entrada de datos
-    def entdatos(n):
-        key_input = input("\nLa matriz clave debe ser ingresada de la siguiente forma \n╔══════════════════╗\n║\"1 2, 3 4, 5 6,..\"║\n╚══════════════════╝\nIntroduce la matriz clave (separada por comas y espacios): ")
+    def entdatos(n):        
+        key_input = input("\nLa matriz clave debe ser ingresada de la siguiente forma \n             ╔═══════════╗\nMatriz 2x2 = ║\"1 2, 3 4 \"║\n             ╚═══════════╝\n\n             ╔══════════════════════╗\nMatriz 3x3 = ║\"1 2 3, 3 4 6, 7 8 9 \"║\n             ╚══════════════════════╝\nIntroduce la matriz clave (separada por comas y espacios): ")
         try:
             key_matrix = [[int(num) for num in row.split()] for row in key_input.split(",")]           
         except ValueError:
-            print("No es valido")
+            print("No es valido")            
         if(n == 1):
             plaintext_input = input("Introduce el mensaje a cifrar: ")
             plaintext_input = plaintext_input.replace(" ","")
