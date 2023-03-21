@@ -6,24 +6,20 @@ while True:#Bucle principal del programa
     from math import gcd
     ALPHABET = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ" #En efecto el alfabetoe
     #Funciones de entrada de datos
-    def entradaMatriz(key):
-        while True:
-            key_input = key
-            
+    
+
+    def entdatos(n):
+        while True:    
+            key_input = input("\nLa matriz clave debe ser ingresada de la siguiente forma \n             ╔═══════════╗\nMatriz 2x2 = ║\"1 2, 3 4 \"║\n             ╚═══════════╝\n\n             ╔══════════════════════╗\nMatriz 3x3 = ║\"1 2 3, 3 4 6, 7 8 9 \"║\n             ╚══════════════════════╝\n DEBEN SER MATRICES CUADRADAS\n\nIntroduce la matriz clave (separada por comas y espacios): ")
             key_matrix = [[int(num) for num in row.split()] for row in key_input.split(",")]
             if len(key_matrix) not in [2, 3]:
                 print("La matriz debe tener 2 o 3 filas")
                 continue
             if any(len(row) != len(key_matrix) for row in key_matrix):
-                print("La matriz debe ser cuadrada")
-                key_input = input("\nLa matriz clave debe ser ingresada de la siguiente forma \n             ╔═══════════╗\nMatriz 2x2 = ║\"1 2, 3 4 \"║\n             ╚═══════════╝\n\n             ╔══════════════════════╗\nMatriz 3x3 = ║\"1 2 3, 3 4 6, 7 8 9 \"║\n             ╚══════════════════════╝\n DEBEN SER MATRICES CUADRADAS\n\nIntroduce la matriz clave (separada por comas y espacios): ")
+                print(" \nPor favor, ingresa una matriz cuadrada (nxn)\n")
                 continue
-            return key_matrix
-
-    def entdatos(n):
-        key_input = input("\nLa matriz clave debe ser ingresada de la siguiente forma \n             ╔═══════════╗\nMatriz 2x2 = ║\"1 2, 3 4 \"║\n             ╚═══════════╝\n\n             ╔══════════════════════╗\nMatriz 3x3 = ║\"1 2 3, 3 4 6, 7 8 9 \"║\n             ╚══════════════════════╝\n DEBEN SER MATRICES CUADRADAS\n\nIntroduce la matriz clave (separada por comas y espacios): ")        
-        
-        key_matrix = entradaMatriz(key_input)        
+            else: 
+                break     
         if(n == 1):
             plaintext_input = input("Introduce el mensaje a cifrar: ")
             plaintext_input = plaintext_input.replace(" ","")
