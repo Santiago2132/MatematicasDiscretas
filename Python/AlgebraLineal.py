@@ -1,9 +1,44 @@
 import numpy as np
-while True:
+print("╔═════════════════════════════════╗\n║Bienvenido a cifrado y descifrado║\n╚═════════════════════════════════╝")
+print("\n\n░░▄▀▀▀▄░▄▄░░░░░░╠▓░░░░\n░░░▄▀▀▄█▄░▀▄░░░▓╬▓▓▓░░\n░░▀░░░░█░▀▄░░░▓▓╬▓▓▓▓░\n░░░░░░▐▌░░░░▀▀███████▀\n▒▒▄██████▄▒▒▒▒▒▒▒▒▒▒▒▒ \n ")
+
+while True:#Bucle principal del programa
     from math import gcd
+    ALPHABET = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ" #En efecto el alfabetoe
+    #Funciones de entrada de datos
+    def entradaMatriz(key):
+        while True:
+            key_input = key
+            
+            key_matrix = [[int(num) for num in row.split()] for row in key_input.split(",")]
+            if len(key_matrix) not in [2, 3]:
+                print("La matriz debe tener 2 o 3 filas")
+                continue
+            if any(len(row) != len(key_matrix) for row in key_matrix):
+                print("La matriz debe ser cuadrada")
+                key_input = input("\nLa matriz clave debe ser ingresada de la siguiente forma \n             ╔═══════════╗\nMatriz 2x2 = ║\"1 2, 3 4 \"║\n             ╚═══════════╝\n\n             ╔══════════════════════╗\nMatriz 3x3 = ║\"1 2 3, 3 4 6, 7 8 9 \"║\n             ╚══════════════════════╝\n DEBEN SER MATRICES CUADRADAS\n\nIntroduce la matriz clave (separada por comas y espacios): ")
+                continue
+            return key_matrix
 
-    ALPHABET = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
-
+    def entdatos(n):
+        key_input = input("\nLa matriz clave debe ser ingresada de la siguiente forma \n             ╔═══════════╗\nMatriz 2x2 = ║\"1 2, 3 4 \"║\n             ╚═══════════╝\n\n             ╔══════════════════════╗\nMatriz 3x3 = ║\"1 2 3, 3 4 6, 7 8 9 \"║\n             ╚══════════════════════╝\n DEBEN SER MATRICES CUADRADAS\n\nIntroduce la matriz clave (separada por comas y espacios): ")        
+        
+        key_matrix = entradaMatriz(key_input)        
+        if(n == 1):
+            plaintext_input = input("Introduce el mensaje a cifrar: ")
+            plaintext_input = plaintext_input.replace(" ","")
+            try:
+                print("\nEste es su mensaje cifrado: ",encrypt(plaintext_input.upper(), key_matrix))
+            except ValueError:
+                print("Error")        
+        if(n == 2):
+            ciphertext_input = input("Introduce el mensaje cifrado: ")
+            ciphertext_input=  ciphertext_input.replace(" ","")
+            try:        
+                print("\nEste es su mensaje descifrado: ",decrypt(ciphertext_input.upper(), key_matrix))
+            except ValueError:
+                print("Error")
+    #Funciones de cifrado y descigrado
     def encrypt(plaintext, key):
         n = len(key)        
         # Check if key has an inverse modulo len(ALPHABET)
@@ -32,18 +67,8 @@ while True:
                 ciphertext += ALPHABET[encrypted_matrix[i][j]]        
         # Separate ciphertext into groups of 4 characters
         separated_ciphertext = ' '.join([ciphertext[i:i+4] for i in range(0, len(ciphertext), 4)])        
-        return separated_ciphertext
-    
-    key_input = input("Introduce la matriz clave (separada por comas y espacios): ")
-    key_matrix = [[int(num) for num in row.split()] for row in key_input.split(",")]
-    plaintext_input = input("Introduce el mensaje a cifrar: ")
-    plaintext_input = plaintext_input.replace(" ","")
-    try:
-        print(encrypt(plaintext_input.upper(), key_matrix))
-    except ValueError as e:
-        print(e)
+        return separated_ciphertext        
     #Desencriptación
-    ALPHABET = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
 
     def decrypt(ciphertext, key):
         n = len(key)
@@ -83,10 +108,19 @@ while True:
             subTextoCifrado = np.dot(clave, subTexto) % 26
             textoCifradoNumeros.extend(subTextoCifrado)
         textoCifrado = ''.join([chr(num + 65) for num in textoCifradoNumeros])
-        return textoCifrado
+        return textoCifrado    
+    print("\n 1). Cifrar un texto \n 2). Descrifrar un texto \n 3). Apagar el programa")
     
-    key_input = input("Introduce la matriz clave (separada por comas y espacios): ")
-    key_matrix = [[int(num) for num in row.split()] for row in key_input.split(",")]
-    ciphertext_input = input("Introduce el mensaje cifrado: ")
-    ciphertext_input=  ciphertext_input.replace(" ","")
-    print(decrypt(ciphertext_input.upper(), key_matrix))
+    while True: #Elecciíon de opciones
+        try:
+            option = int(input("\nIngrese un número de una opción: "))
+            break  # Salir del bucle si la entrada es válida
+        except ValueError:
+            print("Entrada inválida. Debe ingresar un número entero.")            
+    if(option == 1 or option == 2):
+        entdatos(option)
+    if  option == 3:
+        print("\n ╔═════════════╗\n ║ Hasta luego ║\n ╚═════════════╝ \n")
+        print("\n⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣙⣆⠀⠈⢳⡄⠀⠀⠀⠀⠀\n⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣤⠶⠟⠛⠉⠁⠉⠛⠃⠀⠈⣿⠻⠷⠶⣦⣤⣀⠀\n⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣴⠟⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡄⠀⠀⠀⠀⠀⠈⠙⢿⣦⣄⣀⣤ ⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ \n⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠾⠋⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣇⠀⠀⠀⠀⠀⠀⠀ ⠈⢿⣿⡉⢹⣿⣿⣿⣷⣶⣶⣤⠀⠀⠀⠀⠀⠀⠀⠀ \n⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡾⠋⠀⣼⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⡄⠀ ⠀⠀⠀⠀⠀⠀⠘⣿⣧⠀⢩⣿⣿⣿⣿⣿⣿\n⠀⠀⠀⠀⠀⠀⠀⠀⣴⠏⠀⠀⢸⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠘⣧⠀⠀⠀⠀⠀⠀⢀⠀⠘⣿⣷⡀⢉⣿⣿⣿⣿⡏\n⠀⠀⠀⠀⠀⠀⣠⣾⠃⠀⠀⠀⣿⠃⠀⠀⠀⠀⠀⠀ ⠀⠁⠀⠀⣿⠀⠀⠀⢹⣇⠀⠀⠀⠀⠀⠘⣇⠀⠘⢿⣷⡉⠉⣿⣿⣿⠁\n⠀⠀⣀⣠⣴⣾⡿⠁⠀⠀⠀⠀⣿⠀⠀ ⠀⠀⠀⠀⠀⢰⡇⠀⠀⠸⣇⠀⠀⠀⢻⡄⠀⠀⠀⠀⠀⢻⡀⠀⠈⠻⣿⣮⡉⢹⡏⠀⠀⠀⠀ \n⢰⣿⣿⣿⣿⣿⠁⠀⢀⠀ ⠁⠀⢻⡆⠀⠀⠀⠀⠀⠀⢸⣧⠀⠀⠀⢻⡄⠀⠀⠀⢿⡀⠀⠀⠀⠀⠸⡇⠀⠀⠀⠘⡿⣿⣿⣷⡀⠀\n⠘⣿⣿⣿  ⠇⠀⠀⣾⠀⠀⠀⢸⣧⠀⠀⠀⠀⠀⠀⠈⣿⣦⠀⠀⠈⢿⣄⠀⠀⠈⢷⡀⠀⠀⠀⠀⣷⠀⠀⠀⠀⢷⡀⠙⢿⣷⡀⠀⠀⠀⠀\n⠀⢻⣿⣿⡏⠀⢠⡀⢻⠀⠀⠀⢸⣿⣦⡀⠀⠀⠀⠀⠀⢿⡉⢷⡄⠀⠘⢿⣦⡀⠀⠈⢷⡀⠀⠀⠀⢻⠀⠀⠀⠀⠈⣧⠀⠈⢻⣷⡀⠀\n⠀⠘⣿⡿⠀⠀⣸⠀⣸⡇⠀⠀⢸⡇⠈⢷⣄⡀⠀⠀⠀⢺⣇⠀⠙⢦⣄⠈⢷⡹⢦⡀⠈⣷⠀⠀⠀⢸⡇⠀⠀⠀⠀⠸⣇ ⠀⠀⠹⣷⡀⠀\n⠀⠀⣸⡇⠀⠀⡯⢠⣿⢿⡄⠀⢸⡇⠀⠀⠈⠛⠶⣦⣄⣀⣹⣿⡓⠳⠎⠛⠲⠿⢦⣽⣶⣼⣇⠀⠀⢸⡇⠀ ⠀⠀⠀⠀⢻⡄⠀⠀⢻⣧\n⠀⢠⣿⠀⠀⠀⡇⣼⠏⠀⠻⣆⢘⣧⣴⠖⠋⠀⠀⠀⠀⠉⠁⠉⠛⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿ ⡁⠀⢸⡇⠀⠀⠀⠀⠀⠘⣷⠀⠀⠈⣿⣇⠀\n⠀⣼⡟⠀⠀⠀⣿⡟⠀⠀⠀⠙⠳⠥⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀ ⣀⣠⣤⣤⣼⡇⠀⢸⡇⠀⠀⠀⠀⠀⠀⢹⡇⠀⠀⡟⢿⣆⠀⠀\n⢀⣿⡇⠀⠀⠀⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⢀⣠⡤⢶⣾⣿⣿⣏⡹⠿⣇⠀⢸⡇⠀⠀⠀⠀⠀⠀⠘⣧⠀⠀⣧⠸⣿⡀⠀\n⢸⣿⢣⠀⠀⠀⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀⠀⣶⣯⠵⠶⠛⠉⠁⠀⠀⠀⠀⢿⠀⢸⡇⠀⠀⠀⠀⠀⠀⠀⢻⠀⠀⣿⠀⣿⣧⠀⠀ \n⣸⡏⢹⠀⠀⠀⢿⡇⠀⠀⠀⣠⣤⣶⣾ ⣿⣻⣿⡿⠖⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⢀⠀⣀⠀⢸⡀⢸⠀⠀⠀⠀⠀⠀⠀⠀⢸⡆ ⠀⡿⢰⡏⣿⡀\n⣿⡇⢸⡄⠀⠀⢸⣿⢀⣴⣟⣡⡽⠟⠛⠋⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⡆⠸⣗⠻⠗⠻⠇⢸⡇⣸⠁⠀⠀⠀⠀ ⠀⠀⠀⢸⡇⠀⡇⢸⠇⢸⣧⠀ \n⣿⡅⠘⣇⠀⠀⠀⣿⡘⠛⠉⠁⠀⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠁⠀⠀⠀⠀⠀⠀⢈⡇⣿ ⠀⠀⠀⠀⠀⠀⠀⠀⢸⡇⢠⣃⡿⠀⠀⣿⠀ \n⣿⢷⡀⢹⡄⠀⠀⢹⡇⠀⠀⣸⡆⠶⠄⠛⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣠⡶⠃⠀⠀⠀ ⠀⠀⢸⣧⡇⠀⠀⠀⠀⠀⠀⠀⠀⢸⡇⠘⣼⠃⠀⠀⢻⡄\n⣿⠈⣧⠈⢷⠀⠀⠈⣿⠀⠀⠈⠀⠀⠀⠀⢀⠀⠀⢀⣀⣤⠴⠖⢚⣩⠽⠋ ⠀⠀⠀⠀⠀⠀⠀⠀⣿⠁⠀⠀⠀⠀⠀⠀⠀⠀⣸⠀⣰⠏⠀⠀⠀⢼⡇ \n⣿⠀⠘⣇⠘⣧⠀⠀⢸⡇⠀⠀⠀⠀⠀⠀⠉⠛⠛⠷⠖⠒⠒ ⠛⠉⠀⠀⠀⠀⠀⠀⠀⠀⣀⣴⢁⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⡿⢰⠟⠀⠀⠀⠀⣿⡄ \n⣿⡄⠀⠘⣦⠘⣇⠀⠈⣿⡄⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣴⠾⠋⢀⣽⡇⠀⠀⠀⠀⠀⠀⠀⠀⢨⡷⠋⠀⠀⠀⠀⠀⣿⠀ \n⢸⣧⠀⠀⠘⢧⡘⢧⡀⠘⠻⠶⢤ ⣤⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀⣀⣀⣠⣴⣾⠟⠋⢀⣠⠶⢻⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠃⠀⠀⠀⠀⠀⣰⡏⠀ \n⢿⡆⠀⠀⡈⢳⣄ ⠱⣄⠀⠀⠀⠀⠀⣽⠉⠉⢉⣉⠙⢿⣉⠉⠻⣿⡿⠋⢀⣠⠖⠋⠁⠀⣾⠁⠀⠀⠀⠀⠀⠀⠀⠀⢰⡟⠀⠀⠀⠀⠀⣠⡟⠀⠀\n⠈⢿ ⠀⠀⠀⠻⣾⣿⣛⣦⣄⠀⠈⠛⠲⠦⣄⣿⡇⠈⠙⠛⠶⠶⢶⣿⠀⠀⠀⢀⣴⣿⣿⣿⣯⣀⣀⣤⣤⣶⣿⣿⣿⣿ ⡛⠛⠋⠉⠉⠀⠀\n⠀⠀⠀⠀⠀⠘⣻⣷⣄⣙⡛⠶⠦⣤⣤⣄⣸⣷⡄⠀⠀⠀⢠⠏⣻⠀⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿ ⠛⣿⣿⣿⣿⣷⡀⠀⠀")
+        print("")
+        break
