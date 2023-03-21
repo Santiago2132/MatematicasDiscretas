@@ -15,13 +15,13 @@ while True:#Bucle principal del programa
             plaintext_input = input("Introduce el mensaje a cifrar: ")
             plaintext_input = plaintext_input.replace(" ","")
             try:
-                print(encrypt(plaintext_input.upper(), key_matrix))
+                print("\nEste es su mensaje cifrado: ",encrypt(plaintext_input.upper(), key_matrix))
             except ValueError as e:
                 print(e)        
         if(n == 2):
             ciphertext_input = input("Introduce el mensaje cifrado: ")
             ciphertext_input=  ciphertext_input.replace(" ","")        
-            print(decrypt(ciphertext_input.upper(), key_matrix))
+            print("\nEste es su mensaje descifrado: ",decrypt(ciphertext_input.upper(), key_matrix))
             '''try:
                 print(encrypt(plaintext_input.upper(), key_matrix))
             except ValueError as e:
