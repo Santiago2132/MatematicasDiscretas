@@ -5,7 +5,7 @@ while True:#Bucle principal del programa
     ALPHABET = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ" #En efecto el alfabetoe
     #Funciones de entrada de datos
     def entdatos(n):        
-        key_input = input("\nLa matriz clave debe ser ingresada de la siguiente forma \n             ╔═══════════╗\nMatriz 2x2 = ║\"1 2, 3 4 \"║\n             ╚═══════════╝\n\n             ╔══════════════════════╗\nMatriz 3x3 = ║\"1 2 3, 3 4 6, 7 8 9 \"║\n             ╚══════════════════════╝\nIntroduce la matriz clave (separada por comas y espacios): ")
+        key_input = input("\nLa matriz clave debe ser ingresada de la siguiente forma \n             ╔═══════════╗\nMatriz 2x2 = ║\"1 2, 3 4 \"║\n             ╚═══════════╝\n\n             ╔══════════════════════╗\nMatriz 3x3 = ║\"1 2 3, 3 4 6, 7 8 9 \"║\n             ╚══════════════════════╝\n DEBEN SER MATRICES CUADRADAS\n\nIntroduce la matriz clave (separada por comas y espacios): ")
         try:
             key_matrix = [[int(num) for num in row.split()] for row in key_input.split(",")]           
         except ValueError:
