@@ -1,25 +1,3 @@
-'''import tkinter as tk
-
-# Crear una ventana
-ventana = tk.Tk()
-
-# Crear un título para la ventana
-ventana.title("Interfaz simple")
-
-# Crear un campo de entrada de texto
-entrada = tk.Entry(ventana)
-
-# Crear un botón que al hacer click, muestra el contenido de la entrada en la consola
-boton = tk.Button(ventana, text="Mostrar texto", command=lambda: print(entrada.get()))
-
-# Posicionar los elementos en la ventana
-tk.Label(ventana, text="Introduzca un texto:").pack()
-entrada.pack()
-boton.pack()
-
-# Iniciar el bucle principal de la ventana
-ventana.mainloop()'''
-
 import tkinter as tk
 
 class InterfazMatriz:
@@ -43,7 +21,7 @@ class InterfazMatriz:
         self.entry_a22.grid(row=2, column=1, padx=5, pady=5)
 
         # Crear un botón para calcular la segunda matriz y mostrarla en una nueva ventana
-        tk.Button(self.ventana, text="Calcular matriz B", command=self.calcular_matriz_b).grid(row=3, column=0, padx=5, pady=5)
+        tk.Button(self.ventana, text="Calcular matriz B", command=self.calcular_matriz_b).grid(row=3, column=0, padx=60, pady=5)
         
         # Iniciar el bucle principal de la ventana
         self.ventana.mainloop()
