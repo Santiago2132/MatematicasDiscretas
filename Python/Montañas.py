@@ -1,5 +1,5 @@
 import math
-print("      /\ \n     /_ \ \n    / \/ \ \n   /      \ \n  /        \ \n /          \ \n/            \Montañas")
+print("      /\ \n     /_ \ \n    / \/ \ \n   /      \ \n  /        \ \n /          \ \n/            \ Distancia entre Montañas")
 #Funciones:
 def calcularDistanciaEntrePuntos(x1, x2, y1, y2):
     return ((x2 - x1) ** 2 + (y2 - y1) ** 2) ** 0.5

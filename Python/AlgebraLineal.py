@@ -4,9 +4,8 @@ print("\n\n░░▄▀▀▀▄░▄▄░░░░░░╠▓░░░░\n�
 
 while True:#Bucle principal del programa
     from math import gcd
-    ALPHABET = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ" #En efecto el alfabetoe
-    #Funciones de entrada de datos
-    
+    ALPHABET = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
+    #Funciones de entrada de datos    
 
     def entdatos(n):
         while True:    
@@ -101,7 +100,7 @@ while True:#Bucle principal del programa
         textoCifradoNumeros = []
         for i in range(0, len(textoNumeros), n):
             subTexto = textoNumeros[i:i+n]
-            subTextoCifrado = np.dot(clave, subTexto) % 26
+            subTextoCifrado = np.dot(clave, subTexto) % 27 #Se cambio el modulo
             textoCifradoNumeros.extend(subTextoCifrado)
         textoCifrado = ''.join([chr(num + 65) for num in textoCifradoNumeros])
         return textoCifrado    
