@@ -1,30 +1,25 @@
-import tkinter as tk
+import tkinter
+def saludo():
+    text1 = text.get()
+    print(text1)
+    hola = tkinter.Tk()
+    hola.geometry("200x100")
+    hola.resizable(False, False)
+    etiqueta = tkinter.Label(hola, text = text1,bg = "green")
+    etiqueta.pack(fill = tkinter.BOTH, expand = True)
+ventana = tkinter.Tk()
+ventana.geometry("400x300")
+etiqueta = tkinter.Label(ventana, text = "Calculadora Hola mundo", bg = "gray")
+text = tkinter.Entry(ventana)
+text.pack 
 
-# Función para mostrar la ventana principal
-def mostrar_ventana_principal():
-    # Creamos la ventana principal
-    ventana_principal = tk.Tk()
-    ventana_principal.title("Ventana principal")
 
-    # Creamos un botón para abrir la otra ventana
-    boton_otra_ventana = tk.Button(ventana_principal, text="Abrir otra ventana", command=mostrar_otra_ventana)
-    boton_otra_ventana.pack()
+boton1 = tkinter.Button(ventana, text = "Presiona", padx = 40, pady = 10, command = saludo)# padx o y determina el tamaño del botón
+boton1.pack()#Para ponerlo
+#etiqueta.pack(fill = tkinter.BOTH, expand = True)# al nombrarlo asi abarcara todo X, o todo Y, pero con BOTH y true
+#Abarca todo el espacio posible
 
-    # Ejecutamos el bucle de la ventana principal
-    ventana_principal.mainloop()
+#etiqueta.pack(side = tk.RIGHT)#Con esto se pone a la izquierda en la mitad de la 
+#ventana.resizable(False, False)#Con esta linea hacemos que el programa no sea reescalables
 
-# Función para mostrar la otra ventana
-def mostrar_otra_ventana():
-    # Creamos la otra ventana
-    otra_ventana = tk.Toplevel()
-    otra_ventana.title("Otra ventana")
-
-    # Capturamos el evento de cierre de la ventana
-    otra_ventana.protocol("WM_DELETE_WINDOW", mostrar_ventana_principal)
-
-    # Creamos un botón para cerrar la ventana
-    boton_cerrar = tk.Button(otra_ventana, text="Cerrar", command=otra_ventana.destroy)
-    boton_cerrar.pack()
-
-# Mostramos la ventana principal al ejecutar el programa
-mostrar_ventana_principal()
+ventana.mainloop()

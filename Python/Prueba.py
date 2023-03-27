@@ -2,19 +2,18 @@ import tkinter
 ventana = tkinter.Tk()
 ventana.geometry("400x300")
 def saludo():
+    text1 = text.get()
+    print(text1)
     hola = tkinter.Tk()
     hola.geometry("200x100")
     hola.resizable(False, False)
-    etiqueta = tkinter.Label(hola, text = "Hola",bg = "green")
+    etiqueta = tkinter.Label(hola, text = text1,bg = "green")
     etiqueta.pack(fill = tkinter.BOTH, expand = True)
     #print("Hola")#Esto se genera por terminal
 etiqueta = tkinter.Label(ventana, text = "Calculadora Hola mundo", bg = "gray")
 text = tkinter.Entry(ventana)
-text.pack()
-def getext():
-    text1 = text.get()
-    print(text1)
-    return text1
+text.pack 
+
 
 boton1 = tkinter.Button(ventana, text = "Presiona", padx = 40, pady = 10, command = saludo)# padx o y determina el tamaño del botón
 boton1.pack()#Para ponerlo
