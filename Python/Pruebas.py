@@ -1,67 +1,30 @@
-#print("\n⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣙⣆⠀⠈⢳⡄⠀⠀⠀⠀⠀\n⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣤⠶⠟⠛⠉⠁⠉⠛⠃⠀⠈⣿⠻⠷⠶⣦⣤⣀⠀\n⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣴⠟⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡄⠀⠀⠀⠀⠀⠈⠙⢿⣦⣄⣀⣤ ⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ \n⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠾⠋⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣇⠀⠀⠀⠀⠀⠀⠀ ⠈⢿⣿⡉⢹⣿⣿⣿⣷⣶⣶⣤⠀⠀⠀⠀⠀⠀⠀⠀ \n⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡾⠋⠀⣼⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⡄⠀ ⠀⠀⠀⠀⠀⠀⠘⣿⣧⠀⢩⣿⣿⣿⣿⣿⣿\n⠀⠀⠀⠀⠀⠀⠀⠀⣴⠏⠀⠀⢸⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠘⣧⠀⠀⠀⠀⠀⠀⢀⠀⠘⣿⣷⡀⢉⣿⣿⣿⣿⡏\n⠀⠀⠀⠀⠀⠀⣠⣾⠃⠀⠀⠀⣿⠃⠀⠀⠀⠀⠀⠀ ⠀⠁⠀⠀⣿⠀⠀⠀⢹⣇⠀⠀⠀⠀⠀⠘⣇⠀⠘⢿⣷⡉⠉⣿⣿⣿⠁\n⠀⠀⣀⣠⣴⣾⡿⠁⠀⠀⠀⠀⣿⠀⠀ ⠀⠀⠀⠀⠀⢰⡇⠀⠀⠸⣇⠀⠀⠀⢻⡄⠀⠀⠀⠀⠀⢻⡀⠀⠈⠻⣿⣮⡉⢹⡏⠀⠀⠀⠀ \n⢰⣿⣿⣿⣿⣿⠁⠀⢀⠀ ⠁⠀⢻⡆⠀⠀⠀⠀⠀⠀⢸⣧⠀⠀⠀⢻⡄⠀⠀⠀⢿⡀⠀⠀⠀⠀⠸⡇⠀⠀⠀⠘⡿⣿⣿⣷⡀⠀\n⠘⣿⣿⣿  ⠇⠀⠀⣾⠀⠀⠀⢸⣧⠀⠀⠀⠀⠀⠀⠈⣿⣦⠀⠀⠈⢿⣄⠀⠀⠈⢷⡀⠀⠀⠀⠀⣷⠀⠀⠀⠀⢷⡀⠙⢿⣷⡀⠀⠀⠀⠀\n⠀⢻⣿⣿⡏⠀⢠⡀⢻⠀⠀⠀⢸⣿⣦⡀⠀⠀⠀⠀⠀⢿⡉⢷⡄⠀⠘⢿⣦⡀⠀⠈⢷⡀⠀⠀⠀⢻⠀⠀⠀⠀⠈⣧⠀⠈⢻⣷⡀⠀\n⠀⠘⣿⡿⠀⠀⣸⠀⣸⡇⠀⠀⢸⡇⠈⢷⣄⡀⠀⠀⠀⢺⣇⠀⠙⢦⣄⠈⢷⡹⢦⡀⠈⣷⠀⠀⠀⢸⡇⠀⠀⠀⠀⠸⣇ ⠀⠀⠹⣷⡀⠀\n⠀⠀⣸⡇⠀⠀⡯⢠⣿⢿⡄⠀⢸⡇⠀⠀⠈⠛⠶⣦⣄⣀⣹⣿⡓⠳⠎⠛⠲⠿⢦⣽⣶⣼⣇⠀⠀⢸⡇⠀ ⠀⠀⠀⠀⢻⡄⠀⠀⢻⣧\n⠀⢠⣿⠀⠀⠀⡇⣼⠏⠀⠻⣆⢘⣧⣴⠖⠋⠀⠀⠀⠀⠉⠁⠉⠛⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿ ⡁⠀⢸⡇⠀⠀⠀⠀⠀⠘⣷⠀⠀⠈⣿⣇⠀\n⠀⣼⡟⠀⠀⠀⣿⡟⠀⠀⠀⠙⠳⠥⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀ ⣀⣠⣤⣤⣼⡇⠀⢸⡇⠀⠀⠀⠀⠀⠀⢹⡇⠀⠀⡟⢿⣆⠀⠀\n⢀⣿⡇⠀⠀⠀⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⢀⣠⡤⢶⣾⣿⣿⣏⡹⠿⣇⠀⢸⡇⠀⠀⠀⠀⠀⠀⠘⣧⠀⠀⣧⠸⣿⡀⠀\n⢸⣿⢣⠀⠀⠀⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀⠀⣶⣯⠵⠶⠛⠉⠁⠀⠀⠀⠀⢿⠀⢸⡇⠀⠀⠀⠀⠀⠀⠀⢻⠀⠀⣿⠀⣿⣧⠀⠀ \n⣸⡏⢹⠀⠀⠀⢿⡇⠀⠀⠀⣠⣤⣶⣾ ⣿⣻⣿⡿⠖⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⢀⠀⣀⠀⢸⡀⢸⠀⠀⠀⠀⠀⠀⠀⠀⢸⡆ ⠀⡿⢰⡏⣿⡀\n⣿⡇⢸⡄⠀⠀⢸⣿⢀⣴⣟⣡⡽⠟⠛⠋⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⡆⠸⣗⠻⠗⠻⠇⢸⡇⣸⠁⠀⠀⠀⠀ ⠀⠀⠀⢸⡇⠀⡇⢸⠇⢸⣧⠀ \n⣿⡅⠘⣇⠀⠀⠀⣿⡘⠛⠉⠁⠀⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠁⠀⠀⠀⠀⠀⠀⢈⡇⣿ ⠀⠀⠀⠀⠀⠀⠀⠀⢸⡇⢠⣃⡿⠀⠀⣿⠀ \n⣿⢷⡀⢹⡄⠀⠀⢹⡇⠀⠀⣸⡆⠶⠄⠛⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣠⡶⠃⠀⠀⠀ ⠀⠀⢸⣧⡇⠀⠀⠀⠀⠀⠀⠀⠀⢸⡇⠘⣼⠃⠀⠀⢻⡄\n⣿⠈⣧⠈⢷⠀⠀⠈⣿⠀⠀⠈⠀⠀⠀⠀⢀⠀⠀⢀⣀⣤⠴⠖⢚⣩⠽⠋ ⠀⠀⠀⠀⠀⠀⠀⠀⣿⠁⠀⠀⠀⠀⠀⠀⠀⠀⣸⠀⣰⠏⠀⠀⠀⢼⡇ \n⣿⠀⠘⣇⠘⣧⠀⠀⢸⡇⠀⠀⠀⠀⠀⠀⠉⠛⠛⠷⠖⠒⠒ ⠛⠉⠀⠀⠀⠀⠀⠀⠀⠀⣀⣴⢁⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⡿⢰⠟⠀⠀⠀⠀⣿⡄ \n⣿⡄⠀⠘⣦⠘⣇⠀⠈⣿⡄⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣴⠾⠋⢀⣽⡇⠀⠀⠀⠀⠀⠀⠀⠀⢨⡷⠋⠀⠀⠀⠀⠀⣿⠀ \n⢸⣧⠀⠀⠘⢧⡘⢧⡀⠘⠻⠶⢤ ⣤⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀⣀⣀⣠⣴⣾⠟⠋⢀⣠⠶⢻⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠃⠀⠀⠀⠀⠀⣰⡏⠀ \n⢿⡆⠀⠀⡈⢳⣄ ⠱⣄⠀⠀⠀⠀⠀⣽⠉⠉⢉⣉⠙⢿⣉⠉⠻⣿⡿⠋⢀⣠⠖⠋⠁⠀⣾⠁⠀⠀⠀⠀⠀⠀⠀⠀⢰⡟⠀⠀⠀⠀⠀⣠⡟⠀⠀\n⠈⢿ ⠀⠀⠀⠻⣾⣿⣛⣦⣄⠀⠈⠛⠲⠦⣄⣿⡇⠈⠙⠛⠶⠶⢶⣿⠀⠀⠀⢀⣴⣿⣿⣿⣯⣀⣀⣤⣤⣶⣿⣿⣿⣿ ⡛⠛⠋⠉⠉⠀⠀\n⠀⠀⠀⠀⠀⠘⣻⣷⣄⣙⡛⠶⠦⣤⣤⣄⣸⣷⡄⠀⠀⠀⢠⠏⣻⠀⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿ ⠛⣿⣿⣿⣿⣷⡀⠀⠀")
-#print("\n╔══════════════════╗\n║\"1 2, 3 4, 5 6,..\"║\n╚══════════════════╝")
-'''
-def entradaMatriz(key):
-    i = 0
-    key_input = key
-    while True:
-        if i != 0:
-            key_input = int(input("Ingrese bien la matriz: "))
-        try:
-            key_matrix = [[int(num) for num in row.split()] for row in key_input.split(",")]
-            if len(key_matrix) not in [2, 3]:
-                print("La matriz debe tener 2 o 3 filas")
-                continue
-            for row in key_matrix:
-                if len(row) != len(key_matrix):
-                    print("La matriz debe ser cuadrada")
-                    continue
-            
-            return key_matrix
-            
-        except ValueError:
-            print("No es válido")
-            continue
-
-
-while True:    
-    key_input = input("\nLa matriz clave debe ser ingresada de la siguiente forma \n             ╔═══════════╗\nMatriz 2x2 = ║\"1 2, 3 4 \"║\n             ╚═══════════╝\n\n             ╔══════════════════════╗\nMatriz 3x3 = ║\"1 2 3, 3 4 6, 7 8 9 \"║\n             ╚══════════════════════╝\n DEBEN SER MATRICES CUADRADAS\n\nIntroduce la matriz clave (separada por comas y espacios): ")
-    key_matrix = [[int(num) for num in row.split()] for row in key_input.split(",")]
-    if len(key_matrix) not in [2, 3]:
-        print("La matriz debe tener 2 o 3 filas")
-        continue
-    if any(len(row) != len(key_matrix) for row in key_matrix):
-        print(" \nPor favor, ingresa una matriz cuadrada (nxn)\n")                       
-        
-        continue
-    else: 
-        break   
-    '''
 import tkinter as tk
-import numpy as np
 
-class Window(tk.Tk):
-    def __init__(self):
-        super().__init__()
-        self.title("Matriz 3x3")
-        self.matrix = np.zeros((3, 3))
-        self.create_widgets()
+# Función para mostrar la ventana principal
+def mostrar_ventana_principal():
+    # Creamos la ventana principal
+    ventana_principal = tk.Tk()
+    ventana_principal.title("Ventana principal")
 
-    def create_widgets(self):
-        for i in range(3):
-            for j in range(3):
-                entry = tk.Entry(self, width=5)
-                entry.grid(row=i, column=j)
-                self.matrix[i][j] = tk.IntVar()
-                entry.configure(textvariable=self.matrix[i][j])
+    # Creamos un botón para abrir la otra ventana
+    boton_otra_ventana = tk.Button(ventana_principal, text="Abrir otra ventana", command=mostrar_otra_ventana)
+    boton_otra_ventana.pack()
 
-        button = tk.Button(self, text="Imprimir", command=self.print_matrix)
-        button.grid(row=3, column=1)
+    # Ejecutamos el bucle de la ventana principal
+    ventana_principal.mainloop()
 
-    def print_matrix(self):
-        print(self.matrix)
+# Función para mostrar la otra ventana
+def mostrar_otra_ventana():
+    # Creamos la otra ventana
+    otra_ventana = tk.Toplevel()
+    otra_ventana.title("Otra ventana")
 
+    # Capturamos el evento de cierre de la ventana
+    otra_ventana.protocol("WM_DELETE_WINDOW", mostrar_ventana_principal)
 
-if __name__ == '__main__':
-    window = Window()
-    window.mainloop()
+    # Creamos un botón para cerrar la ventana
+    boton_cerrar = tk.Button(otra_ventana, text="Cerrar", command=otra_ventana.destroy)
+    boton_cerrar.pack()
+
+# Mostramos la ventana principal al ejecutar el programa
+mostrar_ventana_principal()
