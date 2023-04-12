@@ -1,88 +1,125 @@
+from collections import defaultdict
+import networkx as nx
+import matplotlib.pyplot as plt
+import tkinter as tk
+
 class Graph:
     def __init__(self, edges):
-        self.graph = {}
-        self.visited = {}
+        self.adj_list = defaultdict(list)
+        for u, v in edges:
+            self.adj_list[u].append(v)
+            self.adj_list[v].append(u)
 
-        # Creamos un diccionario donde las claves son los nodos y los valores son
-        # las listas de nodos con los que están conectados
-        for start, end in edges:
-            if start not in self.graph:
-                self.graph[start] = []
-                self.visited[start] = False
-            if end not in self.graph:
-                self.graph[end] = []
-                self.visited[end] = False
-            self.graph[start].append(end)
-            self.graph[end].append(start)
+    def remove_edge(self, u, v):
+        self.adj_list[u].remove(v)
+        self.adj_list[v].remove(u)
 
-    def fleury(self, start):
-        path = [start]
-        self.visited[start] = True
-
-        while len(path) < len(self.graph):
-            # Buscamos el último nodo en el camino actual
-            current = path[-1]
-            # Obtenemos los vecinos del nodo actual que no han sido visitados
-            neighbors = [n for n in self.graph[current] if not self.visited[n]]
-            if not neighbors:
-                # Si no hay vecinos disponibles, retrocedemos un nodo
-                path.pop()
-            else:
-                # Si hay vecinos disponibles, elegimos uno y lo agregamos al camino
-                next_node = neighbors[0]
-                # Si la arista que conecta el nodo actual con el siguiente es un puente,
-                # necesitamos elegir otra arista
-                if len(neighbors) == 1 and self.is_bridge(current, next_node):
-                    continue
-                path.append(next_node)
-                self.visited[next_node] = True
-
-        return path
-
-    def is_bridge(self, start, end):
-        # Marcamos el nodo de partida como visitado
-        self.visited[start] = True
-
-        # Contamos el número de componentes conectados después de eliminar la arista
-        count1 = self.count_components(start)
-
-        # Restauramos el estado de visitado para el nodo de partida
-        self.visited[start] = False
-
-        # Eliminamos la arista
-        self.graph[start].remove(end)
-        self.graph[end].remove(start)
-
-        # Contamos el número de componentes conectados después de eliminar la arista
-        count2 = self.count_components(start)
-
-        # Restauramos la arista
-        self.graph[start].append(end)
-        self.graph[end].append(start)
-
-        # La arista es un puente si el número de componentes conectados aumenta después de eliminarla
-        return count2 > count1
-
-    def count_components(self, start):
-        count = 0
-        self.visited[start] = True
-        stack = [start]
-
-        while stack:
-            current = stack.pop()
-            for neighbor in self.graph[current]:
-                if not self.visited[neighbor]:
-                    self.visited[neighbor] = True
-                    stack.append(neighbor)
-            # Si llegamos al final del camino, hemos encontrado un componente conectado
-            if not stack:
-                count += 1
-
+    def DFS_count(self, v, visited):
+        count = 1
+        visited[v] = True
+        for i in self.adj_list[v]:
+            if not visited[i]:
+                count = count + self.DFS_count(i, visited)
         return count
 
+    def is_valid_next_edge(self, u, v):
+        if len(self.adj_list[u]) == 1:
+            return True
+        else:
+            visited = [False] * len(self.adj_list)
+            count1 = self.DFS_count(u, visited)
 
-# Ejemplo de uso
-edges = [(1, 2), (1, 3), (2, 3), (2, 4), (3, 4)]
-graph = Graph(edges)
-path = graph.fleury(1)
-print(path)  # Salida: [1, 2, 3, 4, 2, 1, 3]
+            self.remove_edge(u, v)
+            visited = [False] * len(self.adj_list)
+            count2 = self.DFS_count(u, visited)
+
+            self.adj_list[u].append(v)
+            self.adj_list[v].append(u)
+
+            return False if count1 > count2 else True
+
+    def print_euler_util(self, u, T):
+        for v in self.adj_list[u]:
+            if self.is_valid_next_edge(u, v):
+                self.remove_edge(u, v)
+                self.print_euler_util(v, T)
+
+        T.append(u)
+
+    def print_euler_tour(self):
+        if not self.is_eulerian_circuit():
+            return "No se puede realizar la trayectoria en el anterior grafo."
+        u = next(iter(self.adj_list))
+
+        T = []
+        self.print_euler_util(u, T)
+        return "El circuito es: " + str(T)
+
+    def is_connected(self):
+        visited = [False] * len(self.adj_list)
+        for i in self.adj_list:
+            if len(self.adj_list[i]) > 1:
+                break
+        else:
+            return True
+
+        self.DFS_count(next(iter(self.adj_list)), visited)
+
+        for i in self.adj_list:
+            if visited[i] == False and len(self.adj_list[i]) > 0:
+                return False
+        return True
+
+    def is_eulerian_circuit(self):
+        if not self.is_connected():
+            return False
+        for i in self.adj_list:
+            if len(self.adj_list[i]) % 2 != 0:
+                return False
+        return True
+
+    def draw_graph(self):
+        G = nx.Graph()
+        for u in self.adj_list:
+            for v in self.adj_list[u]:
+                G.add_edge(u, v)
+        pos = nx.spring_layout(G)
+        nx.draw(G, pos, with_labels=True)
+        plt.show()
+
+
+# Ventanas
+class MainWindow:
+    def __init__(self, a):
+        self.root = tk.Tk()
+        self.root.title("Ventana principal")
+        self.root.protocol("WM_DELETE_WINDOW", self.on_exit)
+
+        self.label = tk.Label(self.root, text="Este es el resultado: " + a)
+        self.label.pack(padx=20, pady=20)
+
+        self.root.mainloop()
+
+    def on_exit(self):
+        self.root.destroy()
+        SecondaryWindow()
+
+
+class SecondaryWindow:
+    def __init__(self):
+        self.root = tk.Tk()
+        self.root.title("Ventana secundaria")
+
+        self.label = tk.Label(self.root, text="Hasta luegooooooooo chao ")
+        self.label.pack(padx=20, pady=20)
+
+        self.root.after(3000, self.root.destroy)
+
+        self.root.mainloop()
+
+
+g1 = Graph([(0, 1), (1, 2), (2, 3), (3, 0), (0, 4), (4, 5), (5, 6), (6, 4), (4, 7), (7, 3), (3, 2), (2, 1), (1, 0)])
+g1.draw_graph()
+result = g1.print_euler_tour()
+MainWindow(result)
+print(result)
