@@ -1,7 +1,6 @@
 from collections import defaultdict
 import networkx as nx
 import matplotlib.pyplot as plt
-import tkinter as tk
 
 class Graph:
     
@@ -79,34 +78,7 @@ class Graph:
             if len(self.listaAdya[i]) % 2 != 0:
                 return False
         return True    
-# Ventanas secundarias 
-class MainWindow:
-    def __init__(self, a):
-        self.root = tk.Tk()
-        self.root.title("Ventana principal")
-        self.root.protocol("WM_DELETE_WINDOW", self.on_exit)
 
-        self.label = tk.Label(self.root, text="Este es el resultado: " + a)
-        self.label.pack(padx=20, pady=20)
-
-        self.root.mainloop()
-
-    def on_exit(self):
-        self.root.destroy()
-        SecondaryWindow()
-class SecondaryWindow:
-    def __init__(self):
-        self.root = tk.Tk()
-        self.root.title("Ventana secundaria")
-
-        self.label = tk.Label(self.root, text="Hasta luegooooooooo chao ")
-        self.label.pack(padx=20, pady=20)
-
-        self.root.after(3000, self.root.destroy)
-
-        self.root.mainloop()
-
-g2 = Graph([(1, 2), (1, 3), (1, 4), (1, 5), (2, 5), (2, 4), (2, 3), (3, 5), (3, 4), (4, 5)])
 g1 = Graph([(1, 2),(1,5),(1,4), (1, 3), (2, 3), (3, 5), (3, 4)])
 G = nx.Graph()
 for u, v in g1.listaAdya.items():
