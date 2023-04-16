@@ -1,132 +1,95 @@
-from collections import defaultdict
+import heapq
 import networkx as nx
 import matplotlib.pyplot as plt
-import tkinter as tk
-class Graph:
-    
-    #Inicializa el grafo
-    def __init__(objectoActual, arista):
-        objectoActual.listaAdya = defaultdict(list)
-        for u, v in arista:
-            objectoActual.listaAdya[u].append(v)
-            objectoActual.listaAdya[v].append(u)
-
-    #Se comprueba que la arista a eliminar no descomponga el grafo, es decir, no separe 
-    def validarGrafoNoDescompuesto(objectoActual, u, v):
-        if len(objectoActual.listaAdya[u]) == 1:
-            return True
-        else:
-            verticeVisitado = [False] * len(objectoActual.listaAdya)
-            contador1 = objectoActual.busquedaProfundidad(u, verticeVisitado)
-
-            objectoActual.eliminarArista(u, v)
-            verticeVisitado = [False] * len(objectoActual.listaAdya)
-            contador2 = objectoActual.busquedaProfundidad(u, verticeVisitado)
-
-            objectoActual.listaAdya[u].append(v)
-            objectoActual.listaAdya[v].append(u)
-
-            return False if contador1 > contador2 else True
-    
-    #Se elimina la arista por la cual ya se paso
-    def eliminarArista(objectoActual, u, v):
-        objectoActual.listaAdya[u].remove(v)
-        objectoActual.listaAdya[v].remove(u)
-
-    #Se usa el metodo de profundidad para contar la cantidad de vertices al cual puede llegar un vertice
-    def busquedaProfundidad(objectoActual, v, verticeVisitado):
-        contador = 1
-        verticeVisitado[v] = True
-        for i in objectoActual.listaAdya[v]:
-            if not verticeVisitado[i]:
-                contador = contador + objectoActual.busquedaProfundidad(i, verticeVisitado)
-        return contador
-
+def dijkstra(graph, start):
     """
-    Se usa para iniciar desde un vertice cualquiera, moviendose entre los vertices y
-    las aristas, mientras elimina estas ultimas.
+    Implementación del algoritmo de Dijkstra para encontrar el camino más corto
+    desde un nodo origen a todos los demás nodos en un grafo ponderado.
+
+    :param graph: Grafo representado como un diccionario de listas de adyacencia.
+                  Cada llave representa un nodo y su valor es una lista de tuplas
+                  (nodo_destino, peso) que representan las aristas que salen del nodo.
+    :param start: Nodo origen para calcular los caminos más cortos.
+    :return: Diccionario con la información de los caminos más cortos desde el nodo origen.
+             Cada llave representa un nodo y su valor es un diccionario con las siguientes llaves:
+             - 'distance': distancia desde el nodo origen al nodo actual.
+             - 'previous': nodo previo en el camino más corto.
+             - 'path': ruta completa desde el nodo origen hasta el nodo actual.
     """
-    def circuitoRecursivo(objectoActual, u, T):
-        for v in objectoActual.listaAdya[u]:
-            if objectoActual.validarGrafoNoDescompuesto(u, v):
-                objectoActual.eliminarArista(u, v)
-                objectoActual.circuitoRecursivo(v, T)
+    distances = {node: {'distance': float('inf'), 'previous': None, 'path': []} for node in graph}
+    distances[start]['distance'] = 0
+    distances[start]['path'] = [start]
 
-        T.append(u)
+    heap = [(0, start)]
+    while heap:
+        (current_distance, current_node) = heapq.heappop(heap)
 
-    #Imprime la ruta del grafo, siempre y cuando sea un circuito 
-    def imprimirCircuitoGrafo(objectoActual):
-        if not objectoActual.circuitoGrafo():
-            print("No se puede realizar la trayectoria en el anterior grafo, puesto que es un camino y no un circuito.")
-            return
-        u = next(iter(objectoActual.listaAdya))
+        if current_distance > distances[current_node]['distance']:
+            continue
 
-        T = []
-        objectoActual.circuitoRecursivo(u, T)
-        print("El circuito es:", T)
+        for (neighbor, weight) in graph[current_node]:
+            distance = current_distance + weight
+            if distance < distances[neighbor]['distance']:
+                distances[neighbor]['distance'] = distance + abs(current_node - neighbor)
+                distances[neighbor]['previous'] = current_node
+                distances[neighbor]['path'] = distances[current_node]['path'] + [neighbor]
+                heapq.heappush(heap, (distances[neighbor]['distance'], neighbor))
 
-    #Validar que el grafo sea conexo 
-    def validarConexo(objectoActual):
-        verticeVisitado = [False] * len(objectoActual.listaAdya)
-        for i in objectoActual.listaAdya:
-            if len(objectoActual.listaAdya[i]) > 1:
-                break
-        else:
-            return True
+    return distances
 
-        objectoActual.busquedaProfundidad(next(iter(objectoActual.listaAdya)), verticeVisitado)
+'''
+graph = {
+    1: [(2, 2), (3, 1)],
+    2: [(1, 2), (3, 2)],
+    3: [(1, 1), (2, 2)]
+}
+'''
 
-        for i in objectoActual.listaAdya:
-            if verticeVisitado[i] == False and len(objectoActual.listaAdya[i]) > 0:
-                return False
-        return True
+graph= {
+    1: [(2,4),(3,2)],
+    2: [(1,4),(3,1,),(4,5)],
+    3: [(1,2),(2,1),(4,8),(5,10)],
+    4: [(2,5),(3,8),(5,2),(6,6)],
+    5: [(3,10),(4,2),(6,3)],
+    6: [(4,6),(5,3)]
+}
+#Impresión del grafo
+G = nx.DiGraph()
 
-    #Valida que el grafo tenga un circuito
-    def circuitoGrafo(objectoActual):
-        if not objectoActual.validarConexo():
-            return False
-        for i in objectoActual.listaAdya:
-            if len(objectoActual.listaAdya[i]) % 2 != 0:
-                return False
-        return True    
-#Ventanas del resultado
-class MainWindow:
-    def __init__(self, a):
-        self.root = tk.Tk()
-        self.root.title("Ventana principal")
-        self.root.protocol("WM_DELETE_WINDOW", self.on_exit)
+for node in graph:
+    G.add_node(node)
 
-        self.label = tk.Label(self.root, text="Este es el resultado: " + a)
-        self.label.pack(padx=20, pady=20)
+for node in graph:
+    for edge in graph[node]:
+        G.add_edge(node, edge[0], weight=edge[1])
 
-        self.root.mainloop()
-
-    def on_exit(self):
-        self.root.destroy()
-        SecondaryWindow()
-class SecondaryWindow:
-    def __init__(self):
-        self.root = tk.Tk()
-        self.root.title("Ventana secundaria")
-
-        self.label = tk.Label(self.root, text="Hasta luegooooooooo chao ")
-        self.label.pack(padx=20, pady=20)
-
-        self.root.after(3000, self.root.destroy)
-
-        self.root.mainloop()
-
-
-g2 = Graph([(1, 2), (1,3),(1,4),(1,5),(2,5),(2,4),(2,3),(3,5),(3,4),(4,5)])
-#Crear el grafo grafico
-G = nx.Graph()
-for u, v in g2.listaAdya.items():
-    G.add_node(u)
-    for i in v:
-        G.add_edge(u, i)
-
-#Graficar el grafo
-nx.draw(G, with_labels=True)
+pos = nx.circular_layout(G)
+nx.draw_networkx_nodes(G, pos, node_color='lightblue', node_size=500)
+nx.draw_networkx_edges(G, pos, edge_color='gray')
+nx.draw_networkx_labels(G, pos, font_size=20, font_family='sans-serif')
+labels = nx.get_edge_attributes(G, 'weight')
+nx.draw_networkx_edge_labels(G, pos, edge_labels=labels, font_size=16, font_family='sans-serif')
+plt.axis('off')
 plt.show()
-#Imprimir el circuito hecho
-g2.imprimirCircuitoGrafo()
+
+
+start_node = 1
+
+distances = dijkstra(graph, start_node)
+
+total_cost = distances[start_node]['distance']
+path = distances[start_node]['path']
+
+print(f"La ruta completa desde el nodo {start_node} es {path}")
+print(f"El costo total del recorrido es {total_cost}")
+
+for node in distances:
+    if node != start_node:
+        distance = distances[node]['distance']
+        path = distances[node]['path']
+        print(f"Distancia desde el nodo {start_node} hasta el nodo {node}: {distance}")
+        print(f"Ruta completa desde el nodo {start_node} hasta el nodo {node}: {path}")
+
+        if node == start_node:
+            print(f"El costo total del recorrido es {distance}")
+            print(f"La ruta completa desde el nodo {start_node} hasta el nodo {node} es {path}")

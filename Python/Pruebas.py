@@ -1,85 +1,62 @@
-from collections import defaultdict
-class Graph:
-#Manuel Andres Zambrano Pinto - Santiago Maldonado Rojas
-    # Método para inicializar el grafo
-    def __init__(self, aristas):
-        # Crear un diccionario de listas para almacenar la lista de adyacencia del grafo
-        self.lista_ady = defaultdict(list)
-        # Recorrer la lista de aristas y agregarlas a la lista de adyacencia
-        for u, v in aristas:
-            # Agregar el vértice v a la lista de adyacencia del vértice u
-            self.lista_ady[u].append(v)
-            # Agregar el vértice u a la lista de adyacencia del vértice v
-            self.lista_ady[v].append(u)
+import heapq
+import networkx as nx
+import matplotlib.pyplot as plt
 
-    # Método de busqueda en profundidad
-    def busqueda_camino_vertices(self, v, visitados):
-        # Marcar el vértice actual como visitado
-        visitados[v] = True
-        # Recorrer todos los vértices adyacentes al vértice actual
-        for u in self.lista_ady[v]:
-            # Si un vértice adyacente no ha sido visitado, llamar al método DFS recursivamente
-            if not visitados[u]:
-                self.busqueda_camino_vertices(u, visitados)
+def dijkstra(graph, start):
+    distances = {node: {'distance': float('inf'), 'previous': None, 'path': []} for node in graph}
+    distances[start]['distance'] = 0
+    distances[start]['path'] = [start]
 
-    # Método de conexo
-    def es_conexo(self):
-        # Crear un diccionario de booleanos para almacenar si cada vértice ha sido visitado o no
-        visitados = {v: False for v in self.lista_ady}
-        # Empezar el recorrido DFS desde el primer vértice de la lista de adyacencia
-        self.busqueda_camino_vertices(next(iter(self.lista_ady)), visitados)
-        # Si hay algún vértice que no ha sido visitado, el grafo no es conexo
-        return all(visitados.values())
+    heap = [(0, start)]
+    while heap:
+        (current_distance, current_node) = heapq.heappop(heap)
 
-    # Método para verificar si es euleriano
-    def es_euleriano(self):
-        # Verificar si el grafo es conexo
-        if not self.es_conexo():
-            return False
-        # Verificar si cada vértice tiene grado par
-        for v in self.lista_ady:
-            # Si el grado del vértice actual no es par, el grafo no es euleriano
-            if len(self.lista_ady[v]) % 2 != 0:
-                return False
-        # Si todos los vértices tienen grado par, el grafo es euleriano
-        return True
+        if current_distance > distances[current_node]['distance']:
+            continue
 
-    # Busca el circuito en el grafo
-    def circuito_euleriano(self):
-        # Verifica si el grafo es euleriano antes de continuar
-        if not self.es_euleriano():
-            # Si no es euleriano, retorna None
-            return None
-        circuito = []
-        # Crea una pila con un vértice arbitrario
-        pila = [next(iter(self.lista_ady))]
-        while pila:
-            # Toma el último vértice agregado a la pila
-            v = pila[-1]
-            if self.lista_ady[v]:
-                # Si el vértice tiene adyacentes, toma uno y lo elimina de la lista de adyacencia
-                u = self.lista_ady[v].pop()
-                self.lista_ady[u].remove(v)
-                # Agrega el nuevo vértice a la pila
-                pila.append(u)
-            else:
-                # Si no hay más adyacentes para el vértice actual, lo agrega al circuito
-                circuito.append(pila.pop())
-        # Retorna el circuito euleriano encontrado
-        return circuito
+        for (neighbor, weight) in graph[current_node]:
+            distance = current_distance + weight
+            if distance < distances[neighbor]['distance']:
+                distances[neighbor]['distance'] = distance
+                distances[neighbor]['previous'] = current_node
+                distances[neighbor]['path'] = distances[current_node]['path'] + [neighbor]
+                heapq.heappush(heap, (distances[neighbor]['distance'], neighbor))
 
-    # Método para imprimir el circuito 
-    def imprimir_circuito_euleriano(self):
-        # Obtiene el circuito euleriano del grafo
-        circuito = self.circuito_euleriano()
-        if circuito is None:
-            # Si no se puede obtener un circuito euleriano, imprime un mensaje de error
-            print("No se puede realizar la trayectoria en el grafo, puesto que es un camino y no un circuito.")
-        else:
-            # Si se obtiene un circuito euleriano, lo imprime en orden inverso
-            print("El circuito es:", circuito[::-1])
+    return distances
 
+graph = {
+    1: [(2, 4), (3, 2)],
+    2: [(1, 4), (3, 1), (4, 5)],
+    3: [(1, 2), (2, 1), (4, 8), (5, 10)],
+    4: [(2, 5), (3, 8), (5, 2), (6, 6)],
+    5: [(3, 10), (4, 2), (6, 3)],
+    6: [(4, 6), (5, 3)]
+}
 
-g1 = Graph([(1, 2),(1, 5),(1, 4), (1, 3), (2, 3), (3, 5), (3, 4)])
+G = nx.DiGraph()
 
-g1.imprimir_circuito_euleriano()
+for node in graph:
+    G.add_node(node)
+
+for node in graph:
+    for edge in graph[node]:
+        G.add_edge(node, edge[0], weight=edge[1])
+
+pos = nx.circular_layout(G)
+nx.draw_networkx_nodes(G, pos, node_color='lightblue', node_size=500)
+nx.draw_networkx_edges(G, pos, edge_color='gray')
+nx.draw_networkx_labels(G, pos, font_size=20, font_family='sans-serif')
+labels = nx.get_edge_attributes(G, 'weight')
+nx.draw_networkx_edge_labels(G, pos, edge_labels=labels, font_size=16, font_family='sans-serif')
+plt.axis('off')
+plt.show()
+
+start_node = 1
+distances = dijkstra(graph, start_node)
+
+print(f"Resultados del algoritmo de Dijkstra desde el nodo {start_node}:\n")
+for node in distances:
+    distance = distances[node]['distance']
+    path = distances[node]['path']
+    print(f"Distancia desde el nodo {start_node} hasta el nodo {node}: {distance}")
+    print(f"Ruta completa desde el nodo {start_node} hasta el nodo {node}: {path}\n")
