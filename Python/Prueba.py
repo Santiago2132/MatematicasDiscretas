@@ -1,6 +1,7 @@
 import heapq
 import networkx as nx
 import matplotlib.pyplot as plt
+
 def dijkstra(graph, start):
     """
     Implementación del algoritmo de Dijkstra para encontrar el camino más corto
@@ -30,22 +31,14 @@ def dijkstra(graph, start):
         for (neighbor, weight) in graph[current_node]:
             distance = current_distance + weight
             if distance < distances[neighbor]['distance']:
-                distances[neighbor]['distance'] = distance + abs(current_node - neighbor)
+                distances[neighbor]['distance'] = distance
                 distances[neighbor]['previous'] = current_node
-                distances[neighbor]['path'] = distances[current_node]['path'] + [neighbor]
+                distances[neighbor]['path'] = distances[current_node]['path'] + [current_node]
                 heapq.heappush(heap, (distances[neighbor]['distance'], neighbor))
 
     return distances
 
-'''
 graph = {
-    1: [(2, 2), (3, 1)],
-    2: [(1, 2), (3, 2)],
-    3: [(1, 1), (2, 2)]
-}
-'''
-
-graph= {
     1: [(2,4),(3,2)],
     2: [(1,4),(3,1,),(4,5)],
     3: [(1,2),(2,1),(4,8),(5,10)],
@@ -53,6 +46,7 @@ graph= {
     5: [(3,10),(4,2),(6,3)],
     6: [(4,6),(5,3)]
 }
+
 #Impresión del grafo
 G = nx.DiGraph()
 
@@ -72,7 +66,6 @@ nx.draw_networkx_edge_labels(G, pos, edge_labels=labels, font_size=16, font_fami
 plt.axis('off')
 plt.show()
 
-
 start_node = 1
 
 distances = dijkstra(graph, start_node)
@@ -90,6 +83,5 @@ for node in distances:
         print(f"Distancia desde el nodo {start_node} hasta el nodo {node}: {distance}")
         print(f"Ruta completa desde el nodo {start_node} hasta el nodo {node}: {path}")
 
-        if node == start_node:
-            print(f"El costo total del recorrido es {distance}")
-            print(f"La ruta completa desde el nodo {start_node} hasta el nodo {node} es {path}")
+print(f"El costo total del recorrido es {total_cost}")
+print(f"La ruta completa desde el nodo {start_node} hasta el nodo {start_node} es {path}")
