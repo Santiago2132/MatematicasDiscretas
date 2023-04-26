@@ -1,3 +1,6 @@
+import networkx as nx
+import matplotlib.pyplot as plt
+
 class ConjuntoDisjunto:
     def __init__(self, n):
         # Inicialización de la estructura de datos de conjuntos disjuntos
@@ -48,11 +51,64 @@ def imprimir_grafo_y_arbol(grafo, arbol):
     print("Árbol de expansión mínimo:")
     for u, v, peso in arbol:
         print(f"{u} -- {v} : {peso}") # Imprimimos las aristas del árbol de expansión mínimo
+#Funciones de manera grafica 
+def visualizar_grafo(grafo):
+    G = nx.Graph() # Creamos un grafo vacío
+    n = len(grafo)
+    for i in range(n):
+        G.add_node(i) # Agregamos un nodo por cada vértice del grafo
+        for j in range(i+1, n):
+            if grafo[i][j] != 0:
+                G.add_edge(i, j, weight=grafo[i][j]) # Agregamos una arista por cada arista del grafo, con su peso correspondiente
 
+    pos = nx.spring_layout(G) # Calculamos la posición de los nodos usando el algoritmo de Fruchterman-Reingold
+    labels = {(i,j): grafo[i][j] for (i,j) in G.edges()} # Creamos un diccionario de etiquetas para las aristas
+
+    nx.draw_networkx_nodes(G, pos, node_color='lightblue', node_size=500) # Dibujamos los nodos
+    nx.draw_networkx_labels(G, pos) # Dibujamos las etiquetas de los nodos
+    nx.draw_networkx_edges(G, pos, width=2, edge_color='gray') # Dibujamos las aristas
+    nx.draw_networkx_edge_labels(G, pos, edge_labels=labels, font_size=14) # Dibujamos las etiquetas de las aristas
+
+    plt.axis('off') # Ocultamos los ejes
+    plt.show() # Mostramos el grafo
+
+def visualizar_arbol(grafo, arbol):
+    G = nx.Graph() # Creamos un grafo vacío
+    n = len(grafo)
+    for i in range(n):
+        G.add_node(i) # Agregamos un nodo por cada vértice del grafo
+    for u, v, peso in arbol:
+        G.add_edge(u, v, weight=peso) # Agregamos una arista por cada arista del árbol de expansión mínimo, con su peso correspondiente
+
+    pos = nx.spring_layout(G) # Calculamos la posición de los nodos usando el algoritmo de Fruchterman-Reingold
+    labels = {(u,v): peso for (u,v,peso) in G.edges(data='weight')} # Creamos un diccionario de etiquetas para las aristas
+
+    nx.draw_networkx_nodes(G, pos, node_color='lightblue', node_size=500) # Dibujamos los nodos
+    nx.draw_networkx_labels(G, pos) # Dibujamos las etiquetas de los nodos
+    nx.draw_networkx_edges(G, pos, width=2, edge_color='gray') # Dibujamos las aristas
+    nx.draw_networkx_edge_labels(G, pos, edge_labels=labels, font_size=14) # Dibujamos las etiquetas de las aristas
+
+    plt.axis('off') # Ocultamos los ejes
+    plt.show() # Mostramos el grafo
 grafo = [[0, 1, 3, 0],
          [1, 0, 2, 4],
          [3, 2, 0, 5],
          [0, 4, 5, 0]]
-
+visualizar_grafo(grafo)
 arbol_expansion = kruskal(grafo)
+visualizar_arbol(grafo,arbol_expansion)
 imprimir_grafo_y_arbol(grafo, arbol_expansion)
+
+grafo2 = [[0,4,0,0,0,0,0,9,0],
+          [4,0,9,0,0,0,0,11,0],
+          [0,9,0,7,0,4,0,0,2],
+          [0,0,7,0,10,15,0,0,0],
+          [0,0,0,10,0,11,0,0,0],
+          [0,0,4,15,11,0,2,0,0],
+          [0,0,0,0,0,2,0,1,6],
+          [9,11,0,0,0,0,1,0,7],
+          [0,0,2,0,0,0,6,7,0]]
+visualizar_grafo(grafo2)
+arbol_expansion2 = kruskal(grafo2)
+visualizar_arbol(grafo2,arbol_expansion2)
+imprimir_grafo_y_arbol(grafo2, arbol_expansion2)
