@@ -51,6 +51,7 @@ def imprimir_grafo_y_arbol(grafo, arbol):
     print("Árbol de expansión mínimo:")
     for u, v, peso in arbol:
         print(f"{u} -- {v} : {peso}") # Imprimimos las aristas del árbol de expansión mínimo
+        
 #Funciones de manera grafica 
 def visualizar_grafo(grafo):
     G = nx.Graph() # Creamos un grafo vacío
@@ -90,6 +91,7 @@ def visualizar_arbol(grafo, arbol):
 
     plt.axis('off') # Ocultamos los ejes
     plt.show() # Mostramos el grafo
+    
 grafo = [[0, 1, 3, 0],
          [1, 0, 2, 4],
          [3, 2, 0, 5],
