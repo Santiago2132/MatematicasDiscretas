@@ -79,9 +79,9 @@ def plot_cube_graph(graph):
     ax.set_zlabel('Z')
     plt.show()
 # Crear un cubo de 2x2x2 y encontrar el camino más corto entre dos vértices
-graph = CubeGraph(2, 2, 2)
+graph = CubeGraph(1, 1, 1)
 start = (0, 0, 0)
 end = (1, 1, 1)
 shortest_distance = graph.shortest_path(start, end)
-plot_cube_graph(graph)
+#plot_cube_graph(graph)
 print(f"Shortest distance from {start} to {end}: {shortest_distance}")
