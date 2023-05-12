@@ -15,17 +15,24 @@ def tredigitosiguales(num): #Ya funciona
                 return True
     return False
 #Funcion del producto medio
+
 def algoritmoMultiplicadorConstante(semilla, cantNumeros):
+    num_digits = len(str(semilla))
     resultado = [0] * cantNumeros  # Se inicializa la lista con la cantidad de números a generar
     X1 = int(semilla)  # Se convierte la semilla a un entero
-    X2 = X1  # X2 es igual a X1 en el primer lugar
+    X2 = X1  # X2 es igual a X1 en el primer lugar    
+    semillas_ingresadas = []
     for i in range(cantNumeros):
-        X2 = X1 * X2        
-        longitud = len(str(X2))
-        indice = (longitud // 2) - 2
-        numeros = str(X2)[indice:indice+4]
+        numeros = str(X1 * X2)
+        longitud = len(numeros)
+        indice = (longitud // 2) - 2                                                                                                   
+        numeros = numeros[indice:indice+num_digits]
+        semillas_ingresadas.append(X1)
         resultado[i] = numeros
-    return resultado
+        X2 = int(numeros)
+
+        
+    return resultado, semillas_ingresadas
 semillas_ingresadas = []
 #Programa principal
 while True:#Falta culminar la salida de los números aleatorios.
@@ -40,6 +47,9 @@ while True:#Falta culminar la salida de los números aleatorios.
         elif any(str(seed)[i:i+3] in '0123456789' for i in range(len(str(seed))-2)):
             print("Error: la semilla no puede tener números consecutivos")
             continue
+        elif any(str(seed)[i:i+3] in '9876543210' for i in range(len(str(seed))-2)):
+            print("Error: la semilla no puede tener números consecutivos")
+            continue
         elif tredigitosiguales(seed):
             print("Error: la semilla no puede tener tres dígitos iguales")
             continue
@@ -48,9 +58,12 @@ while True:#Falta culminar la salida de los números aleatorios.
             continue
         else:
             semillas_ingresadas.append(seed)
-            numeros_aleatorios = algoritmoMultiplicadorConstante(seed, 36)            
-            print("Números seudo aleatorios: ",numeros_aleatorios) 
-            print("Semilla usada: ",seed)         
+            numeros_aleatorios,semillas = algoritmoMultiplicadorConstante(seed, 36)            
+            print("Números seudo aleatorios: ")
+            for i in range(len(numeros_aleatorios)):
+                print("0."+numeros_aleatorios[i])
+            print("Semilla usada: ",seed)        
+            print("Semillas usasdas: ",semillas) 
     except ValueError:
         print("Error: el valor ingresado no es un número")
         continue    
