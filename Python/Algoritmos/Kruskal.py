@@ -1,3 +1,4 @@
+#Santiago Maldonado Rojas - Manuel Andrés Zambrano Pinto - Nelson Yair 
 import networkx as nx
 import matplotlib.pyplot as plt
 
