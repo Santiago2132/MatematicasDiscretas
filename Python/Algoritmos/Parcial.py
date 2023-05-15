@@ -27,7 +27,7 @@ def algoritmoMultiplicadorConstante(semilla, cantNumeros):
         longitud = len(numeros)
         indice = (longitud // 2) - 2                                                                                                   
         numeros = numeros[indice:indice+num_digits]
-        semillas_ingresadas.append(X1)
+        semillas_ingresadas.append(X2)
         resultado[i] = numeros
         X2 = int(numeros)
 
