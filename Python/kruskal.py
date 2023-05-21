@@ -1,3 +1,4 @@
+#Santiago Maldonado Rojas - Manuel Andres Zambrano Pinto
 class ConjuntoDisjunto:
     def __init__(self, n):
         """

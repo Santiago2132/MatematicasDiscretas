@@ -38,6 +38,7 @@ def kruskal(grafo):
     aristas.sort() # Ordenamos las aristas por peso
 
     arbol_expansion = [] # Inicializamos la lista de aristas del árbol de expansión mínimo
+    
     for peso, u, v in aristas:
         if conjuntos.encontrar(u) != conjuntos.encontrar(v): # Si u y v no están en el mismo conjunto
             conjuntos.unir(u, v) # Los unimos en el mismo conjunto
@@ -51,7 +52,8 @@ def imprimir_grafo_y_arbol(grafo, arbol):
         print(fila) # Imprimimos la matriz de adyacencia del grafo
     print("Árbol de expansión mínimo:")
     for u, v, peso in arbol:
-        print(f"{u} -- {v} : {peso}") # Imprimimos las aristas del árbol de expansión mínimo
+        print(f"Nodo {u} -- Nodo {v} : {peso}") # Imprimimos las aristas del árbol de expansión mínimo
+    print()
         
 #Funciones de manera grafica 
 def visualizar_grafo(grafo):
@@ -95,15 +97,9 @@ def visualizar_arbol(grafo, arbol):
     
 
 #grafo2 = [[0,0,2,2,4,0,3],[0,0,6,7,0,4,3],[2,6,0,0,0,5,2],[2,7,0,0,5,0,6],[4,0,0,5,0,0,0],[0,4,5,0,0,0,0],[3,3,2,6,0,0,0,0]]
-#grafo2 = [[0,0,8,2,4,0,3],[0,0,5,2,0,4,3],[8,5,0,0,0,5,2],[2,2,0,0,5,0,5],[4,0,0,5,0,0,0],[0,4,5,0,0,0,0],[3,3,2,5,0,0,0]]
-grafo2 = [[0,0,7,2,4,0,3],
-          [0,0,2,4,0,4,3],
-          [7,2,0,0,0,5,2],
-          [2,4,0,0,5,0,2],
-          [4,0,0,5,0,0,0],
-          [0,4,5,0,0,0,0],
-          [3,3,2,2,0,0,0]]
-visualizar_grafo(grafo2)
+grafo2 = [[0,0,8,2,4,0,3],[0,0,5,2,0,4,3],[8,5,0,0,0,5,2],[2,2,0,0,5,0,5],[4,0,0,5,0,0,0],[0,4,5,0,0,0,0],[3,3,2,5,0,0,0]]
+#grafo2 = [[0,0,7,2,4,0,3],          [0,0,2,4,0,4,3],          [7,2,0,0,0,5,2],          [2,4,0,0,5,0,2],          [4,0,0,5,0,0,0],          [0,4,5,0,0,0,0],          [3,3,2,2,0,0,0]]
+#visualizar_grafo(grafo2)
 arbol_expansion2 = kruskal(grafo2)
-visualizar_arbol(grafo2,arbol_expansion2)
+#visualizar_arbol(grafo2,arbol_expansion2)
 imprimir_grafo_y_arbol(grafo2, arbol_expansion2)
