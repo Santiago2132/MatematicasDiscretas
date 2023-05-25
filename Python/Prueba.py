@@ -1,3 +1,4 @@
+#Santiago Maldonado Rojas - Manuel Andres Zambrano Pinto
 class ConjuntoDisjunto:
     def __init__(self, n):
         """
@@ -65,7 +66,6 @@ def imprimir_grafo_y_arbol(grafo, arbol):
     for u, v, peso in arbol:
         print(f"Nodo {u} -- Nodo {v} : {peso}") # Imprimimos las aristas del árbol de expansión mínimo
     print()
-
 # Ejemplo de uso
 grafo2 = [[0,0,8,2,4,0,3],
           [0,0,5,2,0,4,3],
